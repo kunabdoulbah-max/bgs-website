@@ -138,7 +138,8 @@
           p1: 'BGS accompagne les entreprises dans la conception, le déploiement et l’exploitation de leurs systèmes d’information. Notre approche combine expertise technique, méthode et proximité pour répondre à des besoins réels.',
           p2: 'Nous intervenons sur l’ensemble du cycle : audit, architecture, intégration, sécurisation, support et évolution. Un seul interlocuteur, une vision cohérente, des solutions qui durent.',
           link: 'En savoir plus sur BGS',
-          team: 'Notre équipe réunit des profils complémentaires en infrastructure, réseaux, fibre optique, sécurité, cloud et développement. Elle intervient avec une même exigence : comprendre le besoin, concevoir une solution adaptée et la maintenir dans le temps. Cette polyvalence permet de prendre en charge vos projets de bout en bout, sans multiplier les interlocuteurs.'
+          team: 'Notre équipe réunit des profils complémentaires en infrastructure, réseaux, fibre optique, sécurité, cloud et développement. Elle intervient avec une même exigence : comprendre le besoin, concevoir une solution adaptée et la maintenir dans le temps. Cette polyvalence permet de prendre en charge vos projets de bout en bout, sans multiplier les interlocuteurs.',
+          visualAlt: 'Visuel de l’écosystème technologique BGS — réseau, cloud et cybersécurité'
         },
         services: {
           eyebrow: 'Nos expertises', title: 'Des services IT complets et cohérents',
@@ -690,7 +691,8 @@
           p1: 'BGS supports organisations in designing, deploying and operating their information systems. Our approach combines technical expertise, method and closeness to address real business needs.',
           p2: 'We cover the entire lifecycle: audit, architecture, integration, security, support and evolution. One point of contact, a coherent vision and solutions built to last.',
           link: 'Learn more about BGS',
-          team: 'Our team brings together complementary profiles in infrastructure, networks, fibre optics, security, cloud and development. Every member works to the same standard: understand the need, design a suitable solution and maintain it over time. This versatility lets us handle your projects end to end, without multiplying points of contact.'
+          team: 'Our team brings together complementary profiles in infrastructure, networks, fibre optics, security, cloud and development. Every member works to the same standard: understand the need, design a suitable solution and maintain it over time. This versatility lets us handle your projects end to end, without multiplying points of contact.',
+          visualAlt: 'BGS technology ecosystem — network, cloud and cybersecurity'
         },
         services: {
           eyebrow: 'Our expertise', title: 'Complete and coherent IT services',
@@ -1241,7 +1243,8 @@
           p1: 'تدعم بى جى إس المؤسسات في تصميم أنظمة معلوماتها ونشرها وتشغيلها. نجمع بين الخبرة التقنية والمنهجية والقرب من العميل لتلبية احتياجات حقيقية.',
           p2: 'نغطي دورة الحياة كاملة: التدقيق، المعمارية، الدمج، الحماية، الدعم والتطوير. نقطة اتصال واحدة، رؤية متماسكة، وحلول تدوم.',
           link: 'اعرف المزيد عن بى جى إس',
-          team: 'يضم فريقنا ملفات متكاملة في البنية التحتية والشبكات والألياف البصرية والأمان والسحابة والتطوير. يعمل أعضاؤه جميعاً بمعيار واحد: فهم الحاجة، تصميم حل مناسب، ثم متابعته وصيانته عبر الوقت. تتيح لنا هذه التعددية تولي مشاريعك من البداية إلى النهاية دون تعدد جهات الاتصال.'
+          team: 'يضم فريقنا ملفات متكاملة في البنية التحتية والشبكات والألياف البصرية والأمان والسحابة والتطوير. يعمل أعضاؤه جميعاً بمعيار واحد: فهم الحاجة، تصميم حل مناسب، ثم متابعته وصيانته عبر الوقت. تتيح لنا هذه التعددية تولي مشاريعك من البداية إلى النهاية دون تعدد جهات الاتصال.',
+          visualAlt: 'صورة منظومة بى جى إس التقنية — الشبكات والسحابة والأمن السيبراني'
         },
         services: {
           eyebrow: 'خبراتنا', title: 'خدمات تقنية متكاملة ومتماسكة',
@@ -1868,7 +1871,8 @@
           "p1": "BGS apoya a las empresas en el diseño, implementación y operación de sus sistemas de información. Nuestro enfoque combina experiencia técnica, método y proximidad para satisfacer las necesidades reales.",
           "p2": "Trabajamos en todo el ciclo: auditoría, arquitectura, integración, seguridad, soporte y evolución. Un contacto único, una visión coherente, soluciones duraderas.",
           "link": "Más información sobre BGS",
-          "team": "Nuestro equipo reúne perfiles complementarios en infraestructura, redes, fibra óptica, seguridad, nube y desarrollo. Interviene con la misma exigencia: entender la necesidad, diseñar una solución adecuada y mantenerla en el tiempo. Esta versatilidad te permite hacerte cargo de tus proyectos de principio a fin, sin multiplicar el número de contactos."
+          "team": "Nuestro equipo reúne perfiles complementarios en infraestructura, redes, fibra óptica, seguridad, nube y desarrollo. Interviene con la misma exigencia: entender la necesidad, diseñar una solución adecuada y mantenerla en el tiempo. Esta versatilidad te permite hacerte cargo de tus proyectos de principio a fin, sin multiplicar el número de contactos.",
+          "visualAlt": "Imagen del ecosistema tecnológico BGS — red, nube y ciberseguridad"
         },
         "services": {
           "eyebrow": "Nuestra experiencia",

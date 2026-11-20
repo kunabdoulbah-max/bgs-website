@@ -81,6 +81,7 @@ Fichiers dans `assets/img/` :
 - **`bgs-mark.svg`** — marque seule hexagone/réseau (favicon, courriel, signature, icône d'application).
 - **`favicon.svg`** — favicon carré.
 - **`about-illustration.svg`** et `img/projects/*.svg` — illustrations technologiques originales.
+- **`ecosysteme-reelle.jpg`** — photo de la section « Écosystème BGS » de l’accueil (image fournie, optimisée en JPEG progressif 1408×768).
 
 Le logo associe un hexagone (infrastructure et cybersécurité), un réseau de nœuds reliés (interconnexion) et la typographie **BGS**. Il reste lisible en petit format et sur fond clair comme sur fond sombre.
 
@@ -217,7 +218,7 @@ Le logo fourni est intégré sous `assets/img/bgs-logo-officiel.png` (PNG transp
 - La section **Accueil / bienvenue** intègre une illustratrice d’accueil (`assets/img/welcome-lady.svg`) et mentionne la Mauritanie (`config.js → site.country`).
 - La section **Ingénierie & expertise** utilise `assets/img/engineers-expertise-bg.svg` et présente des ingénieurs en architecture, supervision et sécurité.
 - Une fenêtre **Produit de la semaine** s’ouvre automatiquement une fois par navigateur. Elle affiche le produit défini par `config.js → featuredProductId` (par défaut : câble fibre optique), sans prix ni référence inventés. Un onglet en bas à gauche permet de la rouvrir. La fermeture est mémorisée dans `localStorage`.
-- Les illustrations SVG ont été remplacées par les trois photos fournies : `fibre-reelle.jpg` (hero + déploiement fibre), `accueil-reelle.jpg` (section accueil, réimportée depuis Gemini_Generated_Image_kjf5eekjf5eekjf5.jpg) et `expertise-reelle.jpg` (ingénierie & expertise). Elles sont optimisées en JPEG progressif. Si l’ordre ne correspond pas, il suffit de permuter les fichiers dans `assets/img/`.
+- Les illustrations SVG ont été remplacées par les photos fournies : `fibre-reelle.jpg` (hero + déploiement fibre), `accueil-reelle.jpg` (section accueil, réimportée depuis Gemini_Generated_Image_kjf5eekjf5eekjf5.jpg), `expertise-reelle.jpg` (ingénierie & expertise) et `ecosysteme-reelle.jpg` (section « Écosystème BGS » de l’accueil, depuis Gemini_Generated_Image_jqic7hjqic7hjqic.jpg). Elles sont optimisées en JPEG progressif. Si l’ordre ne correspond pas, il suffit de permuter les fichiers dans `assets/img/`.
 
 
 ---
