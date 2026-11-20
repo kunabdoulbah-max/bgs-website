@@ -1,0 +1,19 @@
+<svg width="800" height="500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice">
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#071B3A"/><stop offset="0.6" stop-color="#0B3262"/><stop offset="1" stop-color="#0E5BA8"/></linearGradient>
+<radialGradient id="glow"><stop offset="0" stop-color="#168BFF" stop-opacity=".55"/><stop offset="1" stop-color="#168BFF" stop-opacity="0"/></radialGradient>
+<pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#9FD0FF" stroke-opacity=".10" stroke-width="1"/></pattern>
+<linearGradient id="acc" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6FB8FF"/><stop offset="1" stop-color="#168BFF"/></linearGradient>
+</defs>
+<rect width="800" height="500" fill="url(#bg)"/><rect width="800" height="500" fill="url(#grid)"/>
+<circle cx="400" cy="250" r="230" fill="url(#glow)"/>
+
+<g stroke="#6FB8FF" stroke-width="2" fill="none" stroke-opacity=".75">
+  <path d="M400 250C300 150 210 180 130 110M400 250c100-95 190-55 270-130M400 250c-70 70-160 80-230 150M400 250c90 60 170 55 250 140M400 250V70M400 250v180"/>
+</g>
+<g fill="#168BFF" stroke="#BFE0FF" stroke-width="2.5">
+  <circle cx="400" cy="250" r="34"/><circle cx="130" cy="110" r="16"/><circle cx="670" cy="120" r="16"/><circle cx="170" cy="400" r="16"/><circle cx="650" cy="390" r="16"/><circle cx="400" cy="70" r="14"/><circle cx="400" cy="430" r="14"/>
+</g>
+<g fill="#9FD0FF" font-family="Arial" font-size="14" text-anchor="middle"><text x="400" y="256">CORE</text></g>
+<g fill="#9FD0FF" opacity=".7"><circle cx="70" cy="70" r="3"/><circle cx="735" cy="90" r="3"/><circle cx="80" cy="430" r="3"/><circle cx="730" cy="420" r="3"/></g>
+</svg>

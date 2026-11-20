@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BGS — Votre partenaire technologique pour un avenir connecté</title>
+  <meta name="description" content="BGS — Votre partenaire technologique pour un avenir connecté. Infrastructure, réseaux, cybersécurité, cloud et développement informatique.">
+  <meta name="theme-color" content="#071B3A">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="BGS">
+  <meta property="og:title" content="BGS — Votre partenaire technologique pour un avenir connecté">
+  <meta property="og:description" content="Infrastructure, réseaux, cybersécurité, cloud et développement informatique.">
+  <meta property="og:image" content="assets/img/bgs-mark.svg">
+  <link rel="canonical" href="https://www.bgs.example/">
+  <link rel="alternate" hreflang="fr" href="https://www.bgs.example/?lang=fr">
+  <link rel="alternate" hreflang="en" href="https://www.bgs.example/?lang=en">
+  <link rel="alternate" hreflang="ar" href="https://www.bgs.example/?lang=ar">
+  <link rel="alternate" hreflang="es" href="https://www.bgs.example/?lang=es">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="assets/css/styles.css?v=11">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Organization","name":"BGS","url":"https://www.bgs.example","logo":"https://www.bgs.example/assets/img/bgs-logo-officiel.png","description":"Services informatiques, intégration de solutions technologiques et transformation numérique.","contactPoint":{"@type":"ContactPoint","contactType":"customer service","availableLanguage":["French","English","Arabic"]}}
+  </script>
+  <script src="assets/js/config.js?v=11" defer></script>
+  <script src="assets/js/i18n.js?v=11" defer></script>
+  <script src="assets/js/app.js?v=11" defer></script>
+</head>
+<body data-page="home">
+  <a class="skip-link" href="#main" data-i18n="nav.skip">Aller au contenu principal</a>
+
+  <!-- ============================== TOP BAR ============================== -->
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <span class="topbar-tagline" data-i18n="nav.topbarTagline">Technologies · Infrastructures · Sécurité</span>
+      <div class="topbar-right">
+        <div class="topbar-contact" data-render="topbarContact"></div>
+        <div class="lang-switch" role="group" aria-label="Langue" data-i18n-attr="aria-label:nav.language">
+          <button type="button" class="lang-btn" data-lang-btn="fr" aria-pressed="true">FR</button>
+          <button type="button" class="lang-btn" data-lang-btn="en" aria-pressed="false">EN</button>
+          <button type="button" class="lang-btn" data-lang-btn="ar" aria-pressed="false">AR</button>
+          <button type="button" class="lang-btn" data-lang-btn="es" aria-pressed="false">ES</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================== HEADER =============================== -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="BGS — Accueil">
+        <img src="assets/img/bgs-logo-officiel.png" alt="BGS" width="148" height="42">
+      </a>
+      <nav class="main-nav" aria-label="Navigation principale">
+        <a href="index.html" data-i18n="nav.home">Accueil</a>
+        <a href="a-propos.html" data-i18n="nav.about">À propos</a>
+        <a href="services.html" data-i18n="nav.services">Nos services</a>
+        <a href="solutions.html" data-i18n="nav.solutions">Nos solutions</a>
+        <a href="realisations.html" data-i18n="nav.projects">Nos réalisations</a>
+                <div class="nav-product-wrap">
+          <a href="produits.html" data-i18n="nav.products">Nos produits</a>
+          <div class="nav-products-menu" role="group" data-i18n-attr="aria-label:products.categoriesTitle">
+        <a href="produits.html?category=fibre" data-i18n="products.categories.fibre"></a>
+        <a href="produits.html?category=reseau" data-i18n="products.categories.reseau"></a>
+        <a href="produits.html?category=telecom" data-i18n="products.categories.telecom"></a>
+        <a href="produits.html?category=satellite" data-i18n="products.categories.satellite"></a>
+        <a href="produits.html?category=informatique" data-i18n="products.categories.informatique"></a>
+          </div>
+        </div>
+        <a href="bgs-it-support.html" data-i18n="itsupport.nav">BGS IT SUPPORT</a>
+        <a href="contact.html" data-i18n="nav.contact">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <a href="#" class="header-wa" data-wa title="Contactez-nous sur WhatsApp" aria-label="WhatsApp"><span data-icon="whatsapp"></span></a>
+        <a class="btn btn-primary btn-sm" href="contact.html?devis=1" data-i18n="nav.quote">Demander un devis</a>
+        <button type="button" class="menu-toggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-nav" data-i18n-attr="aria-label:nav.menu"><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <div class="nav-backdrop" aria-hidden="true"></div>
+  <aside class="mobile-nav" id="mobile-nav" aria-label="Navigation mobile">
+    <div class="mobile-nav-head">
+      <img src="assets/img/bgs-logo-officiel.png" alt="BGS">
+      <button type="button" class="mobile-nav-close" aria-label="Fermer le menu" data-i18n-attr="aria-label:nav.close"><span data-icon="close"></span></button>
+    </div>
+    <a href="index.html" data-i18n="nav.home">Accueil</a>
+    <a href="a-propos.html" data-i18n="nav.about">À propos</a>
+    <a href="services.html" data-i18n="nav.services">Nos services</a>
+    <a href="solutions.html" data-i18n="nav.solutions">Nos solutions</a>
+    <a href="realisations.html" data-i18n="nav.projects">Nos réalisations</a>
+        <a href="produits.html" data-i18n="nav.products">Nos produits</a>
+        <a href="bgs-it-support.html" data-i18n="itsupport.nav">BGS IT SUPPORT</a>
+    <a href="contact.html" data-i18n="nav.contact">Contact</a>
+    <a href="contact.html?devis=1" class="btn btn-primary" data-i18n="nav.quote">Demander un devis</a>
+    <a href="#" class="btn btn-outline-dark" data-wa><span data-icon="whatsapp"></span><span data-wa-label>WhatsApp</span></a>
+    <div class="mobile-nav-lang" role="group" aria-label="Langue" data-i18n-attr="aria-label:nav.language">
+      <button type="button" data-lang-btn="fr" aria-pressed="true">FR</button>
+      <button type="button" data-lang-btn="en" aria-pressed="false">EN</button>
+      <button type="button" data-lang-btn="ar" aria-pressed="false">AR</button>
+      <button type="button" data-lang-btn="es" aria-pressed="false">ES</button>
+    </div>
+  </aside>
+
+  <main id="main">
+    <!-- =============================== HERO ============================== -->
+    <section class="hero hero-fibre">
+      <div class="hero-glow"></div>
+      <div class="container">
+        <div class="hero-copy">
+          <span class="hero-badge"><span class="pulse-dot"></span><span data-i18n="home.badge">Intégrateur · Conseiller · Partenaire technologique</span></span>
+          <h1>
+            <span data-i18n="home.titleLead">Votre partenaire technologique</span>
+            <span class="accent" data-i18n="home.titleAccent">pour un avenir connecté</span>
+          </h1>
+          <p class="hero-lead" data-i18n="home.subtitle">BGS conçoit, déploie et sécurise les environnements informatiques des organisations. De l’infrastructure au cloud, nous transformons la technologie en un avantage concret pour votre activité.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="services.html" data-i18n="home.primary">Découvrir nos services</a>
+            <a class="btn btn-outline" href="contact.html?devis=1" data-i18n="home.secondary">Demander un devis</a>
+          </div>
+          <div class="hero-rule"><span data-i18n="home.trustTitle">Des expertises qui couvrent toute votre chaîne numérique</span></div>
+          <div class="hero-trust-chips" data-render="homeTrust"></div>
+        </div>
+
+        <div class="hero-visual" aria-hidden="true">
+          <div class="hv-ring"></div>
+          <div class="hv-ring r2"></div>
+          <div class="hv-ring r3"></div>
+          <div class="hv-line l1"></div>
+          <div class="hv-line l2"></div>
+          <div class="hv-core"><img src="assets/img/bgs-mark.svg" alt=""></div>
+          <div class="hv-card c1">
+            <span class="hv-ico" data-icon="network"></span>
+            <span><small data-i18n="home.heroPanel.online">Opérationnel</small><strong data-i18n="home.heroPanel.subtitle">Infrastructure · Réseau · Sécurité</strong></span>
+          </div>
+          <div class="hv-card c2">
+            <span class="hv-ico" data-icon="cloud"></span>
+            <span><small data-i18n="home.heroPanel.cloud">Cloud hybride</small><strong data-i18n="home.heroPanel.sync">Synchronisé</strong></span>
+          </div>
+          <div class="hv-card c3">
+            <span class="hv-ico" data-icon="shield"></span>
+            <span><small data-i18n="home.heroPanel.protection">Protection</small><strong data-i18n="home.heroPanel.nodes">Nœuds actifs</strong></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================= WELCOME ============================= -->
+    <section class="section section-light welcome-section">
+      <div class="container welcome-grid">
+        <div class="welcome-visual reveal">
+          <img src="assets/img/accueil-reelle.jpg" alt="" data-i18n-attr="alt:welcome.alt" decoding="async">
+          <span class="welcome-caption" data-i18n="welcome.caption">Votre interlocuteur BGS — Mauritanie</span>
+        </div>
+        <div class="welcome-copy reveal">
+          <span class="eyebrow" data-i18n="welcome.eyebrow">Bienvenue en Mauritanie</span>
+          <h2 data-i18n="welcome.title">Bonjour, bienvenue chez BGS</h2>
+          <p data-i18n="welcome.text">Notre équipe vous accueille et prend en charge vos besoins informatiques, du premier échange au déploiement sur site.</p>
+          <a class="btn btn-primary" href="contact.html" data-i18n="welcome.button">Échanger avec notre équipe</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================== INTRO ============================== -->
+    <section class="section section-white">
+      <div class="container intro-grid">
+        <div class="intro-visual reveal">
+          <img src="assets/img/about-illustration.svg" alt="Illustration technologique BGS — réseau, cloud et cybersécurité" loading="lazy">
+          <div class="intro-badge">
+            <strong data-i18n="home.heroPanel.title">Écosystème BGS</strong>
+            <span data-i18n="home.heroPanel.subtitle">Infrastructure · Réseau · Sécurité</span>
+          </div>
+        </div>
+        <div class="intro-copy reveal">
+          <span class="eyebrow" data-i18n="home.intro.eyebrow">Qui sommes-nous ?</span>
+          <h2 data-i18n="home.intro.title">La technologie au service de la performance de votre entreprise</h2>
+          <p data-i18n="home.intro.p1">BGS accompagne les entreprises dans la conception, le déploiement et l’exploitation de leurs systèmes d’information.</p>
+          <p data-i18n="home.intro.p2">Nous intervenons sur l’ensemble du cycle : audit, architecture, intégration, sécurisation, support et évolution. Un seul interlocuteur, une vision cohérente, des solutions qui durent.</p>
+          <p class="intro-team" data-i18n="home.intro.team">Notre équipe réunit des profils complémentaires en infrastructure, réseaux, fibre optique, sécurité, cloud et développement.</p>
+          <a class="text-link" href="a-propos.html"><span data-i18n="home.intro.link">En savoir plus sur BGS</span><span data-icon="arrow"></span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================== EXPERTISE ============================= -->
+    <section class="section media-section expertise-section">
+      <div class="container media-inner">
+        <div class="media-copy reveal">
+          <span class="eyebrow eyebrow-light" data-i18n="expertise.eyebrow">Ingénierie &amp; expertise</span>
+          <h2 data-i18n="expertise.title">Des ingénieurs pour concevoir, analyser et sécuriser</h2>
+          <p data-i18n="expertise.text">Nos ingénieurs interviennent sur l’architecture, la performance et la sécurité de vos systèmes.</p>
+          <div class="media-points" data-render="expertiseItems"></div>
+          <a class="btn btn-outline" href="services.html" data-i18n="expertise.button">Voir toutes nos expertises</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ SERVICES ============================= -->
+    <section class="section section-light">
+      <div class="container">
+        <div class="section-head center reveal">
+          <span class="eyebrow" data-i18n="home.services.eyebrow">Nos expertises</span>
+          <h2 data-i18n="home.services.title">Des services IT complets et cohérents</h2>
+          <p data-i18n="home.services.subtitle">Onze domaines d’intervention complémentaires pour construire, sécuriser et faire évoluer votre environnement numérique.</p>
+        </div>
+        <div class="services-grid" data-render="homeServices"></div>
+        <div style="text-align:center;margin-block-start:38px">
+          <a class="btn btn-navy" href="services.html"><span data-i18n="common.seeAllServices">Voir tous les services</span><span data-icon="arrow"></span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================= DEPLOIEMENT FIBRE ========================= -->
+    <section class="section media-section fibre-section">
+      <div class="container media-inner media-inner-right">
+        <div class="media-copy reveal">
+          <span class="eyebrow eyebrow-light" data-i18n="fibre.eyebrow">Déploiement fibre optique</span>
+          <h2 data-i18n="fibre.title">Nos techniciens déploient votre réseau fibre</h2>
+          <p data-i18n="fibre.text">De l’étude au raccordement, BGS accompagne vos projets FTTH, FTTB et OSM en Mauritanie.</p>
+          <div class="media-points" data-render="fibreItems"></div>
+          <a class="btn btn-outline" href="services.html#fibre-optique" data-i18n="fibre.button">Découvrir la prestation fibre</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================== WHY ================================ -->
+    <section class="section section-white">
+      <div class="container">
+        <div class="section-head center reveal">
+          <span class="eyebrow" data-i18n="home.why.eyebrow">Pourquoi choisir BGS</span>
+          <h2 data-i18n="home.why.title">Un partenaire exigeant, à vos côtés</h2>
+          <p data-i18n="home.why.subtitle">Nous privilégions la qualité d’exécution, la clarté des échanges et la durabilité des solutions livrées.</p>
+        </div>
+        <div class="why-grid" data-render="homeWhy"></div>
+      </div>
+    </section>
+
+    <!-- ============================ PROCESS ============================= -->
+    <section class="section section-navy">
+      <div class="container">
+        <div class="section-head center reveal">
+          <span class="eyebrow eyebrow-light" data-i18n="home.process.eyebrow">Notre méthode</span>
+          <h2 data-i18n="home.process.title">Quatre étapes, une exécution maîtrisée</h2>
+          <p data-i18n="home.process.subtitle">Une méthode simple et rigoureuse, du premier échange à l’amélioration continue.</p>
+        </div>
+        <div class="steps-grid" data-render="homeSteps"></div>
+        <div class="stats-grid" style="margin-block-start:70px" data-render="homeStats"></div>
+      </div>
+    </section>
+
+    <!-- ========================= BGS IT SUPPORT ========================== -->
+    <section class="section section-light">
+      <div class="container">
+        <div class="cta-band reveal">
+          <div class="cta-inner">
+            <div>
+              <span class="eyebrow" data-i18n="itsupport.home.eyebrow">BGS IT SUPPORT</span>
+              <h2 data-i18n="itsupport.home.title">Votre informatique sous contrôle</h2>
+              <p data-i18n="itsupport.home.text">Incidents, tickets, parc informatique, interventions et supervision réseau : une seule plateforme pour piloter votre infrastructure.</p>
+            </div>
+            <div class="cta-actions"><a class="btn btn-navy" href="bgs-it-support.html"><span data-i18n="itsupport.home.button">Découvrir BGS IT SUPPORT</span><span data-icon="arrow"></span></a></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================== MOT DU DIRECTEUR GÉNÉRAL ====================== -->
+    <section class="section section-white">
+      <div class="container director-teaser reveal">
+        <div>
+          <span class="eyebrow" data-i18n="director.eyebrow">Mot du Directeur Général</span>
+          <h2 data-i18n="director.title">Un mot de notre Directeur Général</h2>
+          <p data-i18n="director.lead">Une vision portée par la direction de BGS : innovation, expertise et proximité.</p>
+        </div>
+        <a class="btn btn-navy" href="a-propos.html#mot-du-directeur" data-i18n="director.cta">Lire le mot du Directeur Général</a>
+      </div>
+    </section>
+
+    <!-- =============================== CTA ============================== -->
+    <section class="section section-blue">
+      <div class="container">
+        <div class="cta-band reveal">
+          <div class="cta-inner">
+            <div>
+              <h2 data-i18n="home.cta.title">Un projet informatique en tête ?</h2>
+              <p data-i18n="home.cta.text">Parlons de vos besoins. Nous vous proposons une réponse claire, adaptée à votre contexte et à vos priorités.</p>
+            </div>
+            <div class="cta-actions">
+              <a class="btn btn-white" href="contact.html?devis=1" data-i18n="home.cta.button">Demander un devis</a>
+              <a class="btn btn-outline" href="#" data-wa><span data-icon="whatsapp"></span><span data-i18n="home.cta.wa">Écrire sur WhatsApp</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================== FOOTER ============================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="assets/img/bgs-logo-officiel.png" alt="BGS" width="165" height="46">
+          <p data-i18n="footer.tagline">Infrastructure, sécurité et transformation numérique au service de votre activité.</p>
+          <div class="footer-social" data-render="footerSocial"></div>
+          <p class="footer-setup" data-setup-notice hidden data-i18n="footer.setupNotice">Certaines coordonnées restent à renseigner dans assets/js/config.js avant la mise en ligne.</p>
+        </div>
+        <div class="footer-col">
+          <h3 data-i18n="footer.quickTitle">Navigation</h3>
+          <ul data-render="footerQuick"></ul>
+        </div>
+        <div class="footer-col">
+          <h3 data-i18n="footer.servicesTitle">Nos prestations</h3>
+          <ul data-render="footerServices"></ul>
+        </div>
+        <div class="footer-col">
+          <h3 data-i18n="footer.contactTitle">Contact</h3>
+          <div data-render="footerContact"></div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>
+          <span data-i18n="footer.copyright">© {year} BGS. Tous droits réservés.</span>
+          <p class="footer-rights" data-i18n="footer.rights">Conçu pour des organisations qui exigent fiabilité et clarté.</p>
+        </div>
+        <div class="footer-bottom-links">
+          <a href="admin.html" data-i18n="admin.title">Administration</a>
+          <a href="mentions-legales.html" data-i18n="footer.legal">Mentions légales</a>
+          <a href="politique-confidentialite.html" data-i18n="footer.privacy">Politique de confidentialité</a>
+          <a href="#main" data-i18n="footer.backToTop">Retour en haut</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <a href="#" class="whatsapp-float" data-wa aria-label="Contactez-nous sur WhatsApp" title="Contactez-nous sur WhatsApp">
+    <span class="wa-tooltip" data-i18n="wa.tooltip">Contactez-nous sur WhatsApp</span>
+    <span data-icon="whatsapp"></span>
+  </a>
+</body>
+</html>

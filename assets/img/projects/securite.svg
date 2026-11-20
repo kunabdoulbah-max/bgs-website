@@ -1,0 +1,20 @@
+<svg width="800" height="500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice">
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#071B3A"/><stop offset="0.6" stop-color="#0B3262"/><stop offset="1" stop-color="#0E5BA8"/></linearGradient>
+<radialGradient id="glow"><stop offset="0" stop-color="#168BFF" stop-opacity=".55"/><stop offset="1" stop-color="#168BFF" stop-opacity="0"/></radialGradient>
+<pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#9FD0FF" stroke-opacity=".10" stroke-width="1"/></pattern>
+<linearGradient id="acc" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6FB8FF"/><stop offset="1" stop-color="#168BFF"/></linearGradient>
+</defs>
+<rect width="800" height="500" fill="url(#bg)"/><rect width="800" height="500" fill="url(#grid)"/>
+<circle cx="400" cy="250" r="230" fill="url(#glow)"/>
+
+<g transform="translate(400 250)">
+  <path d="M0-150 125-88v92C125 65 68 122 0 150-68 122-125 65-125 4v-92Z" fill="#0A2A57" stroke="url(#acc)" stroke-width="4"/>
+  <path d="M0-110 90-62v64C90 48 49 91 0 112-49 91-90 48-90 2v-64Z" fill="none" stroke="#9FD0FF" stroke-opacity=".35" stroke-width="1.5"/>
+  <rect x="-42" y="-18" width="84" height="66" rx="10" fill="#168BFF" fill-opacity=".35" stroke="#9FD0FF" stroke-width="2.5"/>
+  <path d="M-26-18v-20a26 26 0 0 1 52 0v20" fill="none" stroke="#9FD0FF" stroke-width="4"/>
+  <circle cx="0" cy="12" r="6" fill="#BFE0FF"/><path d="M0 16v14" stroke="#BFE0FF" stroke-width="4" stroke-linecap="round"/>
+</g>
+<g stroke="#6FB8FF" stroke-width="2" fill="none" stroke-opacity=".5"><path d="M0 250h170M630 250h170M400 0v70M400 430v70"/></g>
+<g fill="#9FD0FF" opacity=".7"><circle cx="70" cy="70" r="3"/><circle cx="735" cy="90" r="3"/><circle cx="80" cy="430" r="3"/><circle cx="730" cy="420" r="3"/></g>
+</svg>

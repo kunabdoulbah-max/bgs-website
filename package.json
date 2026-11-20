@@ -1,0 +1,16 @@
+{
+  "name": "bgs-website",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Site institutionnel BGS — multilingue FR/EN/AR/ES, WhatsApp et formulaire de devis.",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "pg": "^8.11.0"
+  }
+}

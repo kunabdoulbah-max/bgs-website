@@ -1,0 +1,19 @@
+<svg width="300" height="84" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 84" role="img" aria-label="BGS — Technologies &amp; Services">
+  <defs>
+    <linearGradient id="hexL" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#9FD0FF"/><stop offset="1" stop-color="#168BFF"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(2 4) scale(.76)">
+    <path d="M50 3 90 26v48L50 97 10 74V26Z" fill="none" stroke="url(#hexL)" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M50 14 80 31v38L50 86 20 69V31Z" fill="none" stroke="#9FD0FF" stroke-opacity=".35" stroke-width="1.5"/>
+    <g stroke="#9FD0FF" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M50 27v15M50 42 33 61M50 42l17 19M33 61h34M50 61v13"/>
+    </g>
+    <circle cx="50" cy="24" r="5" fill="#168BFF"/><circle cx="31" cy="63" r="5" fill="#168BFF"/>
+    <circle cx="69" cy="63" r="5" fill="#168BFF"/><circle cx="50" cy="77" r="3.5" fill="#BFE0FF"/>
+  </g>
+  <text x="84" y="48" font-family="Plus Jakarta Sans, Segoe UI, Arial, sans-serif" font-size="42" font-weight="800" letter-spacing="-1.5" fill="#FFFFFF">BGS</text>
+  <path d="M85 57h68" stroke="#6FB8FF" stroke-width="2.5" stroke-linecap="round"/>
+  <text x="85" y="74" font-family="Plus Jakarta Sans, Segoe UI, Arial, sans-serif" font-size="10.5" font-weight="700" letter-spacing="2.1" fill="#9FD0FF">TECHNOLOGIES</text>
+</svg>

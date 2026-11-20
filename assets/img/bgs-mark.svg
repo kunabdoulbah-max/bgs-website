@@ -1,0 +1,25 @@
+<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="BGS">
+  <defs>
+    <linearGradient id="hex" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#168BFF"/>
+      <stop offset="1" stop-color="#0756A5"/>
+    </linearGradient>
+    <linearGradient id="node" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#6FB8FF"/>
+      <stop offset="1" stop-color="#FFFFFF"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <path d="M50 3 90 26v48L50 97 10 74V26Z" fill="#071B3A"/>
+  <path d="M50 3 90 26v48L50 97 10 74V26Z" fill="none" stroke="url(#hex)" stroke-width="3.5" stroke-linejoin="round"/>
+  <path d="M50 14 80 31v38L50 86 20 69V31Z" fill="none" stroke="#168BFF" stroke-opacity=".28" stroke-width="1"/>
+  <g stroke="url(#node)" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)">
+    <path d="M50 27v15M50 42 33 61M50 42l17 19M33 61h34M50 61v13"/>
+    <circle cx="50" cy="24" r="4.5" fill="#168BFF" stroke="#9FD0FF"/>
+    <circle cx="31" cy="63" r="4.5" fill="#168BFF" stroke="#9FD0FF"/>
+    <circle cx="69" cy="63" r="4.5" fill="#168BFF" stroke="#9FD0FF"/>
+    <circle cx="50" cy="77" r="3" fill="#6FB8FF" stroke="none"/>
+  </g>
+</svg>
