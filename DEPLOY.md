@@ -1,5 +1,14 @@
 # Hébergement gratuit du site BGS — Render + Neon
 
+## ✅ Déploiement actuel (en ligne)
+
+- **Site** : https://bgs-site.onrender.com
+- **Admin** : https://bgs-site.onrender.com/admin.html (créez votre compte au premier accès)
+- **Code source** : https://github.com/kunabdoulbah-max/bgs-website
+- **Base** : Neon `bgs-site` (Frankfurt), 7 produits initiaux, 0 compte admin
+
+Le guide ci-dessous documente la procédure complète si vous devez recréer l’environnement.
+
 Ce guide vous permet de mettre le site en ligne **gratuitement**, avec un vrai espace
 administrateur sécurisé et un catalogue qui persiste (contrairement aux fichiers JSON locaux).
 

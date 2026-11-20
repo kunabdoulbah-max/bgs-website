@@ -253,6 +253,8 @@ Variables d’environnement utiles :
 
 ## 18. Hébergement gratuit (Render + Neon)
 
+**Site en ligne : https://bgs-site.onrender.com**
+
 Le guide complet est dans **`DEPLOY.md`**. En résumé :
 
 1. Créez une base PostgreSQL gratuite sur https://console.neon.tech (1 Go, sans expiration).
