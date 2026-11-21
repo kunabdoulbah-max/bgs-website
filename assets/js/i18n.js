@@ -63,6 +63,12 @@
         successSetup: 'Compte créé. Redirection vers le catalogue…',
         successLogin: 'Connexion réussie. Redirection…'
       },
+      brands: {
+        eyebrow: 'Écosystème & compatibilité',
+        title: 'Marques PC & télécom prises en charge',
+        subtitle: 'BGS intervient sur une large gamme d’équipements. Cette liste illustre notre champ de compatibilité et de prise en charge ; elle ne constitue pas un partenariat commercial.',
+        label: 'Marques d’ordinateurs et de télécommunications prises en charge (défilement)'
+      },
       wa: {
         tooltip: 'Contactez-nous sur WhatsApp', header: 'WhatsApp',
         message: 'Bonjour BGS, je souhaite obtenir des informations sur vos prestations de services informatiques.',
@@ -616,6 +622,12 @@
         successSetup: 'Account created. Redirecting to the catalogue…',
         successLogin: 'Signed in. Redirecting…'
       },
+      brands: {
+        eyebrow: 'Ecosystem & compatibility',
+        title: 'PC & telecom brands we support',
+        subtitle: 'BGS works across a wide range of equipment. This list illustrates our compatibility and support scope; it does not imply any commercial partnership.',
+        label: 'Supported computer and telecom brands (scrolling)'
+      },
       wa: {
         tooltip: 'Contact us on WhatsApp', header: 'WhatsApp',
         message: 'Hello BGS, I would like to get information about your IT services.',
@@ -1167,6 +1179,12 @@
         weak: 'يجب أن تحتوي كلمة المرور على 8 أحرف على الأقل.',
         successSetup: 'تم إنشاء الحساب. جارٍ التوجيه إلى الكتالوج…',
         successLogin: 'تم تسجيل الدخول. جارٍ التوجيه…'
+      },
+      brands: {
+        eyebrow: 'النظام البيئي والتوافق',
+        title: 'علامات الحواسيب والاتصالات التي ندعمها',
+        subtitle: 'يتدخل BGS على مجموعة واسعة من المعدات. توضح هذه القائمة نطاق التوافق والدعم لدينا، ولا تعني أي شراكة تجارية.',
+        label: 'علامات الحواسيب والاتصالات المدعومة (قائمة متحركة)'
       },
       wa: {
         tooltip: 'تواصل معنا عبر واتساب', header: 'واتساب',
@@ -1775,6 +1793,12 @@
         "weak": "La contraseña debe contener al menos 8 caracteres.",
         "successSetup": "Cuenta creada. Redirección al catálogo…",
         "successLogin": "Conexión exitosa. Redirigir…"
+      },
+      "brands": {
+        "eyebrow": "Ecosistema y compatibilidad",
+        "title": "Marcas de PC y telecomunicaciones que soportamos",
+        "subtitle": "BGS interviene en una amplia gama de equipos. Esta lista ilustra nuestro ámbito de compatibilidad y soporte; no implica ninguna asociación comercial.",
+        "label": "Marcas de ordenadores y telecomunicaciones compatibles (desplazamiento)"
       },
       "wa": {
         "tooltip": "Contáctanos por WhatsApp",

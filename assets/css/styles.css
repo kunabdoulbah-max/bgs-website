@@ -355,6 +355,90 @@ p { margin: 0; }
 .section-head p { color: var(--muted); font-size: 1.02rem; line-height: 1.85; }
 .section-navy .section-head p, .on-dark p { color: #B4CBE4; }
 
+/* ---------------------- Marquee des marques PC / télécom --------------------- */
+.brand-marquee {
+  background: var(--navy);
+  color: var(--white);
+  position: relative;
+  overflow: hidden;
+}
+.brand-marquee::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 0, rgba(22, 139, 255, .18), transparent 62%);
+  pointer-events: none;
+}
+.brand-marquee > * { position: relative; }
+.brand-marquee .section-head { margin-block-end: 38px; }
+.brand-marquee .section-head h2 { color: var(--white); }
+.brand-marquee .section-head p { color: #B4CBE4; max-width: 780px; margin-inline: auto; }
+.brand-marquee .eyebrow { color: var(--electric-soft); }
+
+/* Le sens de défilement reste identique en AR : seul le texte est RTL. */
+.brand-marquee-viewport {
+  direction: ltr;
+  overflow: hidden;
+  padding-block: 6px;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%);
+}
+.brand-marquee-viewport:focus-visible { outline-offset: -3px; }
+.brand-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: bgs-brand-scroll 90s linear infinite;
+  will-change: transform;
+}
+.brand-marquee-viewport:hover .brand-marquee-track,
+.brand-marquee-viewport:focus-within .brand-marquee-track { animation-play-state: paused; }
+.brand-marquee-group {
+  display: flex;
+  align-items: center;
+  flex: none;
+  gap: 14px;
+  padding-inline: 7px;
+}
+.brand-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  min-height: 48px;
+  padding: 0 22px;
+  border: 1px solid rgba(255, 255, 255, .16);
+  border-radius: 100px;
+  background: rgba(255, 255, 255, .055);
+  color: var(--light-blue);
+  font-size: .96rem;
+  font-weight: 700;
+  letter-spacing: .01em;
+  transition: background .25s ease, border-color .25s ease, color .25s ease;
+}
+.brand-chip:hover {
+  background: rgba(22, 139, 255, .22);
+  border-color: rgba(111, 184, 255, .55);
+  color: #FFF;
+}
+@keyframes bgs-brand-scroll {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-50%, 0, 0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .brand-marquee-track { animation: none; }
+  .brand-marquee-viewport {
+    overflow-x: auto;
+    -webkit-mask-image: none;
+    mask-image: none;
+    scrollbar-color: var(--electric) rgba(255, 255, 255, .12);
+  }
+  .brand-marquee-group[aria-hidden="true"] { display: none; }
+}
+@media (max-width: 640px) {
+  .brand-chip { min-height: 42px; padding: 0 16px; font-size: .86rem; }
+  .brand-marquee-group { gap: 10px; }
+}
+
 /* -------------------------------- Intro split ------------------------------- */
 .intro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: center; }
 .intro-visual { position: relative; border-radius: var(--radius-xl); overflow: hidden; background: var(--navy); min-height: 440px; box-shadow: var(--shadow-lg); }

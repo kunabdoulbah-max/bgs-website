@@ -192,6 +192,25 @@
   /* -------------------------- Dynamic content blocks ------------------------ */
   var RENDERERS = {};
 
+  /**
+   * Bandeau défilant de marques PC / télécom.
+   * La liste est dupliquée pour une boucle sans coupure ; la copie est
+   * masquée aux lecteurs d'écran afin de ne pas annoncer deux fois les noms.
+   */
+  RENDERERS.brandMarquee = function () {
+    var brands = (CFG.brands || []).filter(function (name) { return !!String(name).trim(); });
+    if (!brands.length) return '';
+
+    function group(hidden) {
+      return '<div class="brand-marquee-group"' + (hidden ? ' aria-hidden="true"' : '') + '>' +
+        brands.map(function (name) {
+          return '<span class="brand-chip">' + esc(name) + '</span>';
+        }).join('') + '</div>';
+    }
+
+    return group(false) + group(true);
+  };
+
   RENDERERS.homeTrust = function () {
     return (DICT[lang].home.trust || []).map(function (item, i) {
       return '<div class="trust-item reveal" style="transition-delay:' + (i * 45) + 'ms">' +

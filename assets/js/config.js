@@ -65,6 +65,26 @@
     },
 
     /**
+     * Marques PC / télécom affichées dans le bandeau défilant de l'accueil.
+     * MODIFIABLE : ajoutez, retirez ou réordonnez librement les noms.
+     * Important : cette liste illustre les marques que BGS peut prendre en
+     * charge (compatibilité / intervention). Elle n'affirme aucun partenariat,
+     * aucune certification ni aucun approvisionnement officiel.
+     */
+    brands: [
+      'Apple', 'ASUS', 'Acer', 'Dell', 'HP', 'Lenovo', 'MSI', 'Toshiba',
+      'Sony', 'Samsung', 'LG', 'Fujitsu', 'NEC', 'Panasonic', 'IBM',
+      'Supermicro', 'Microsoft', 'Intel', 'AMD', 'NVIDIA', 'Razer',
+      'Alienware', 'Huawei', 'Honor', 'Xiaomi', 'OnePlus', 'OPPO', 'vivo',
+      'Motorola', 'Google', 'Nokia', 'Alcatel', 'ZTE', 'BlackBerry',
+      'Cisco', 'Ericsson', 'Alcatel-Lucent', 'MikroTik', 'Fortinet',
+      'Ubiquiti', 'TP-Link', 'NETGEAR', 'D-Link', 'Juniper', 'Aruba',
+      'Avaya', 'Yealink', 'Grandstream', 'Poly', 'Snom', 'Hughes',
+      'Gilat', 'Viasat', 'iDirect', 'Palo Alto', 'Check Point', 'Sophos',
+      'WatchGuard'
+    ],
+
+    /**
      * Catalogue produits — MODIFIABLES.
      * Remplacez ces exemples par vos vraies références. Aucun prix ni produit
      * réel n'est inventé : les champs ci-dessous sont des modèles.
