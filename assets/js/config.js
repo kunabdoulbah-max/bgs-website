@@ -133,7 +133,7 @@
 
     /**
      * Réalisations — photos de travaux déjà effectués par BGS.
-     * Les huit photographies fournies sont intégrées dans la galerie.
+     * Les photographies fournies sont intégrées dans la galerie.
      * Les intitulés et descriptions restent volontairement neutres :
      * modifiez-les dans i18n.js (clé projects.items[i]) si vous souhaitez
      * préciser chaque mission. Aucun client ni référence n'est inventé.
@@ -146,7 +146,8 @@
       { id: 'realisation-05', category: 'realisations', image: 'assets/img/realisations/realisation-05.jpg', year: '', tags: [] },
       { id: 'realisation-06', category: 'realisations', image: 'assets/img/realisations/realisation-06.jpg', year: '', tags: [] },
       { id: 'realisation-07', category: 'realisations', image: 'assets/img/realisations/realisation-07.jpg', year: '', tags: [] },
-      { id: 'realisation-08', category: 'realisations', image: 'assets/img/realisations/realisation-08.jpg', year: '', tags: [] }
+      { id: 'realisation-08', category: 'realisations', image: 'assets/img/realisations/realisation-08.jpg', year: '', tags: [] },
+      { id: 'realisation-09', category: 'realisations', image: 'assets/img/realisations/realisation-09.jpg', year: '', tags: [] }
     ]
   };
 })(window);

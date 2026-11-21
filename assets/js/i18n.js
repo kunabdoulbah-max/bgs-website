@@ -489,7 +489,8 @@
           { name: 'Réalisation BGS — 05', description: 'Photographie d’une intervention réalisée par BGS.' },
           { name: 'Réalisation BGS — 06', description: 'Photographie d’une intervention réalisée par BGS.' },
           { name: 'Réalisation BGS — 07', description: 'Photographie d’une intervention réalisée par BGS.' },
-          { name: 'Réalisation BGS — 08', description: 'Photographie d’une intervention réalisée par BGS.' }
+          { name: 'Réalisation BGS — 08', description: 'Photographie d’une intervention réalisée par BGS.' },
+          { name: 'Réalisation BGS — 09', description: 'Photographie d’une intervention réalisée par BGS.' }
         ],
         cta: { title: 'Vos projets méritent une présentation à la hauteur', text: 'Confiez-nous votre prochain projet et donnez-nous les éléments que vous souhaitez valoriser.', button: 'Parler d’un projet' }
       },
@@ -1050,7 +1051,8 @@
           { name: 'BGS project — 05', description: 'Photograph of work carried out by BGS.' },
           { name: 'BGS project — 06', description: 'Photograph of work carried out by BGS.' },
           { name: 'BGS project — 07', description: 'Photograph of work carried out by BGS.' },
-          { name: 'BGS project — 08', description: 'Photograph of work carried out by BGS.' }
+          { name: 'BGS project — 08', description: 'Photograph of work carried out by BGS.' },
+          { name: 'BGS project — 09', description: 'Photograph of work carried out by BGS.' }
         ],
         cta: { title: 'Your projects deserve a strong presentation', text: 'Entrust us with your next project and share the elements you would like to highlight.', button: 'Discuss a project' }
       },
@@ -1611,7 +1613,8 @@
           { name: 'مشروع BGS — 05', description: 'صورة لمهمة نفذتها BGS.' },
           { name: 'مشروع BGS — 06', description: 'صورة لمهمة نفذتها BGS.' },
           { name: 'مشروع BGS — 07', description: 'صورة لمهمة نفذتها BGS.' },
-          { name: 'مشروع BGS — 08', description: 'صورة لمهمة نفذتها BGS.' }
+          { name: 'مشروع BGS — 08', description: 'صورة لمهمة نفذتها BGS.' },
+          { name: 'مشروع BGS — 09', description: 'صورة لمهمة نفذتها BGS.' }
         ],
         cta: { title: 'مشاريعك تستحق عرضاً يليق بها', text: 'ائتمنا بمشروعك القادم وزوّدنا بالعناصر التي ترغب في إبرازها.', button: 'ناقش مشروعاً' }
       },
@@ -2629,7 +2632,8 @@
           { "name": "Logro BGS — 05", "description": "Fotografía de una misión realizada por BGS." },
           { "name": "Logro BGS — 06", "description": "Fotografía de una misión realizada por BGS." },
           { "name": "Logro BGS — 07", "description": "Fotografía de una misión realizada por BGS." },
-          { "name": "Logro BGS — 08", "description": "Fotografía de una misión realizada por BGS." }
+          { "name": "Logro BGS — 08", "description": "Fotografía de una misión realizada por BGS." },
+          { "name": "Logro BGS — 09", "description": "Fotografía de una misión realizada por BGS." }
         ],
         "cta": {
           "title": "Tus proyectos merecen una presentación digna",
