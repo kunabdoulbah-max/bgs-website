@@ -66,8 +66,9 @@
       brands: {
         eyebrow: 'Écosystème & compatibilité',
         title: 'Marques PC & télécom prises en charge',
-        subtitle: 'BGS intervient sur une large gamme d’équipements. Cette liste illustre notre champ de compatibilité et de prise en charge ; elle ne constitue pas un partenariat commercial.',
-        label: 'Marques d’ordinateurs et de télécommunications prises en charge (défilement)'
+        subtitle: 'BGS intervient sur une large gamme d’équipements. Cette liste illustre notre champ de compatibilité et de prise en charge ; elle ne constitue pas un partenariat commercial. Les produits du catalogue BGS défilent également dans ce bandeau.',
+        label: 'Marques d’ordinateurs et de télécommunications prises en charge (défilement)',
+        productTag: 'Produit'
       },
       wa: {
         tooltip: 'Contactez-nous sur WhatsApp', header: 'WhatsApp',
@@ -476,17 +477,19 @@
         cta: { title: 'Construisons la solution adaptée à votre contexte', text: 'Décrivez-nous votre environnement et vos objectifs : nous vous proposons une architecture et une feuille de route.', button: 'Parler de ma solution' }
       },
       projects: {
-        eyebrow: 'Nos réalisations', title: 'Des projets présentés à titre d’illustration',
-        lead: 'Cette galerie est un modèle modifiable : remplacez chaque exemple par vos propres projets, avec photos, descriptions, catégories et technologies utilisées. Aucun client ni référence n’est inventé ici.',
-        note: 'Contenu d’exemple — à remplacer par vos réalisations réelles.',
-        filters: { all: 'Tous', infrastructure: 'Infrastructure', reseaux: 'Réseaux', securite: 'Sécurité', cloud: 'Cloud', developpement: 'Développement' },
+        eyebrow: 'Nos réalisations', title: 'Nos réalisations en images',
+        lead: 'Photographies de travaux déjà réalisés par BGS. Les intitulés et les détails de chaque mission peuvent être précisés à tout moment.',
+        note: 'Galerie de photographies de réalisations BGS.',
+        filters: { all: 'Toutes', realisations: 'Photos des réalisations' },
         items: [
-          { name: 'Déploiement d’infrastructure', description: 'Exemple de mission : conception et installation d’une infrastructure virtualisée, avec documentation d’exploitation.' },
-          { name: 'Modernisation réseau', description: 'Exemple de mission : restructuration d’un réseau local, câblage structuré et déploiement du Wi-Fi professionnel.' },
-          { name: 'Durcissement de sécurité', description: 'Exemple de mission : audit de sécurité, configuration des pare-feu et mise en place d’une politique de sauvegarde.' },
-          { name: 'Migration vers le cloud', description: 'Exemple de mission : bascule progressive des services et des comptes utilisateurs vers un environnement cloud.' },
-          { name: 'Application métier', description: 'Exemple de mission : développement d’une application web de gestion avec automatisation des processus.' },
-          { name: 'Vidéosurveillance IP', description: 'Exemple de mission : installation de caméras IP, paramétrage de l’accès distant et contrôle d’accès.' }
+          { name: 'Réalisation BGS — 01', description: 'Photographie d’une intervention réalisée par BGS.' },
+          { name: 'Réalisation BGS — 02', description: 'Photographie d’une intervention réalisée par BGS.' },
+          { name: 'Réalisation BGS — 03', description: 'Photographie d’une intervention réalisée par BGS.' },
+          { name: 'Réalisation BGS — 04', description: 'Photographie d’une intervention réalisée par BGS.' },
+          { name: 'Réalisation BGS — 05', description: 'Photographie d’une intervention réalisée par BGS.' },
+          { name: 'Réalisation BGS — 06', description: 'Photographie d’une intervention réalisée par BGS.' },
+          { name: 'Réalisation BGS — 07', description: 'Photographie d’une intervention réalisée par BGS.' },
+          { name: 'Réalisation BGS — 08', description: 'Photographie d’une intervention réalisée par BGS.' }
         ],
         cta: { title: 'Vos projets méritent une présentation à la hauteur', text: 'Confiez-nous votre prochain projet et donnez-nous les éléments que vous souhaitez valoriser.', button: 'Parler d’un projet' }
       },
@@ -625,8 +628,9 @@
       brands: {
         eyebrow: 'Ecosystem & compatibility',
         title: 'PC & telecom brands we support',
-        subtitle: 'BGS works across a wide range of equipment. This list illustrates our compatibility and support scope; it does not imply any commercial partnership.',
-        label: 'Supported computer and telecom brands (scrolling)'
+        subtitle: 'BGS works across a wide range of equipment. This list illustrates our compatibility and support scope; it does not imply any commercial partnership. Products from the BGS catalogue also scroll in this banner.',
+        label: 'Supported computer and telecom brands (scrolling)',
+        productTag: 'Product'
       },
       wa: {
         tooltip: 'Contact us on WhatsApp', header: 'WhatsApp',
@@ -1034,17 +1038,19 @@
         cta: { title: 'Let’s build the right solution for your context', text: 'Describe your environment and goals: we will propose an architecture and a roadmap.', button: 'Discuss my solution' }
       },
       projects: {
-        eyebrow: 'Our projects', title: 'Projects shown for illustration purposes',
-        lead: 'This gallery is an editable template: replace each example with your own projects, including photos, descriptions, categories and technologies. No client or reference is invented here.',
-        note: 'Sample content — replace with your real projects.',
-        filters: { all: 'All', infrastructure: 'Infrastructure', reseaux: 'Networks', securite: 'Security', cloud: 'Cloud', developpement: 'Development' },
+        eyebrow: 'Our projects', title: 'Our projects in pictures',
+        lead: 'Photographs of work already carried out by BGS. Titles and details of each assignment can be added at any time.',
+        note: 'Photo gallery of BGS projects.',
+        filters: { all: 'All', realisations: 'Project photos' },
         items: [
-          { name: 'Infrastructure deployment', description: 'Sample assignment: design and installation of a virtualised infrastructure with operating documentation.' },
-          { name: 'Network modernisation', description: 'Sample assignment: restructuring a local network, structured cabling and professional Wi-Fi deployment.' },
-          { name: 'Security hardening', description: 'Sample assignment: security audit, firewall configuration and implementation of a backup policy.' },
-          { name: 'Cloud migration', description: 'Sample assignment: progressive migration of services and user accounts to a cloud environment.' },
-          { name: 'Business application', description: 'Sample assignment: development of a web-based management application with process automation.' },
-          { name: 'IP video surveillance', description: 'Sample assignment: installation of IP cameras, remote access setup and access control.' }
+          { name: 'BGS project — 01', description: 'Photograph of work carried out by BGS.' },
+          { name: 'BGS project — 02', description: 'Photograph of work carried out by BGS.' },
+          { name: 'BGS project — 03', description: 'Photograph of work carried out by BGS.' },
+          { name: 'BGS project — 04', description: 'Photograph of work carried out by BGS.' },
+          { name: 'BGS project — 05', description: 'Photograph of work carried out by BGS.' },
+          { name: 'BGS project — 06', description: 'Photograph of work carried out by BGS.' },
+          { name: 'BGS project — 07', description: 'Photograph of work carried out by BGS.' },
+          { name: 'BGS project — 08', description: 'Photograph of work carried out by BGS.' }
         ],
         cta: { title: 'Your projects deserve a strong presentation', text: 'Entrust us with your next project and share the elements you would like to highlight.', button: 'Discuss a project' }
       },
@@ -1183,8 +1189,9 @@
       brands: {
         eyebrow: 'النظام البيئي والتوافق',
         title: 'علامات الحواسيب والاتصالات التي ندعمها',
-        subtitle: 'يتدخل BGS على مجموعة واسعة من المعدات. توضح هذه القائمة نطاق التوافق والدعم لدينا، ولا تعني أي شراكة تجارية.',
-        label: 'علامات الحواسيب والاتصالات المدعومة (قائمة متحركة)'
+        subtitle: 'يتدخل BGS على مجموعة واسعة من المعدات. توضح هذه القائمة نطاق التوافق والدعم لدينا، ولا تعني أي شراكة تجارية. كما تظهر منتجات كتالوج BGS في هذا الشريط المتحرك.',
+        label: 'علامات الحواسيب والاتصالات المدعومة (قائمة متحركة)',
+        productTag: 'منتج'
       },
       wa: {
         tooltip: 'تواصل معنا عبر واتساب', header: 'واتساب',
@@ -1592,17 +1599,19 @@
         cta: { title: 'لنبنِ الحل المناسب لسياقك', text: 'صف لنا بيئتك وأهدافك: سنقترح معمارية وخارطة طريق.', button: 'ناقش حلي' }
       },
       projects: {
-        eyebrow: 'مشاريعنا', title: 'مشاريع معروضة لأغراض التوضيح',
-        lead: 'هذا المعرض قالب قابل للتعديل: استبدل كل مثال بمشاريعك الخاصة مع الصور والأوصاف والفئات والتقنيات المستخدمة. لم يتم اختراع أي عميل أو مرجع هنا.',
-        note: 'محتوى تجريبي — يُستبدل بمشاريعك الفعلية.',
-        filters: { all: 'الكل', infrastructure: 'البنية التحتية', reseaux: 'الشبكات', securite: 'الأمان', cloud: 'السحابة', developpement: 'التطوير' },
+        eyebrow: 'مشاريعنا', title: 'مشاريعنا بالصور',
+        lead: 'صور لأعمال نفذتها BGS بالفعل. يمكن إضافة عناوين كل مهمة وتفاصيلها في أي وقت.',
+        note: 'معرض صور لمشاريع BGS المنفذة.',
+        filters: { all: 'الكل', realisations: 'صور المشاريع' },
         items: [
-          { name: 'نشر بنية تحتية', description: 'مهمة تجريبية: تصميم وتركيب بنية تحتية افتراضية مع وثائق تشغيل.' },
-          { name: 'تحديث الشبكة', description: 'مهمة تجريبية: إعادة تنظيم شبكة محلية وتأسيس كابلات وواي فاي احترافي.' },
-          { name: 'تعزيز الأمان', description: 'مهمة تجريبية: تدقيق أمني وضبط جدران الحماية واعتماد سياسة نسخ احتياطي.' },
-          { name: 'الهجرة إلى السحابة', description: 'مهمة تجريبية: نقل تدريجي للخدمات وحسابات المستخدمين إلى بيئة سحابية.' },
-          { name: 'تطبيق تجاري', description: 'مهمة تجريبية: تطوير تطبيق ويب للإدارة مع أتمتة العمليات.' },
-          { name: 'مراقبة بالفيديو IP', description: 'مهمة تجريبية: تركيب كاميرات IP وضبط الوصول عن بُعد والتحكم في الدخول.' }
+          { name: 'مشروع BGS — 01', description: 'صورة لمهمة نفذتها BGS.' },
+          { name: 'مشروع BGS — 02', description: 'صورة لمهمة نفذتها BGS.' },
+          { name: 'مشروع BGS — 03', description: 'صورة لمهمة نفذتها BGS.' },
+          { name: 'مشروع BGS — 04', description: 'صورة لمهمة نفذتها BGS.' },
+          { name: 'مشروع BGS — 05', description: 'صورة لمهمة نفذتها BGS.' },
+          { name: 'مشروع BGS — 06', description: 'صورة لمهمة نفذتها BGS.' },
+          { name: 'مشروع BGS — 07', description: 'صورة لمهمة نفذتها BGS.' },
+          { name: 'مشروع BGS — 08', description: 'صورة لمهمة نفذتها BGS.' }
         ],
         cta: { title: 'مشاريعك تستحق عرضاً يليق بها', text: 'ائتمنا بمشروعك القادم وزوّدنا بالعناصر التي ترغب في إبرازها.', button: 'ناقش مشروعاً' }
       },
@@ -1797,8 +1806,9 @@
       "brands": {
         "eyebrow": "Ecosistema y compatibilidad",
         "title": "Marcas de PC y telecomunicaciones que soportamos",
-        "subtitle": "BGS interviene en una amplia gama de equipos. Esta lista ilustra nuestro ámbito de compatibilidad y soporte; no implica ninguna asociación comercial.",
-        "label": "Marcas de ordenadores y telecomunicaciones compatibles (desplazamiento)"
+        "subtitle": "BGS interviene en una amplia gama de equipos. Esta lista ilustra nuestro ámbito de compatibilidad y soporte; no implica ninguna asociación comercial. Los productos del catálogo BGS también aparecen en esta banda.",
+        "label": "Marcas de ordenadores y telecomunicaciones compatibles (desplazamiento)",
+        "productTag": "Producto"
       },
       "wa": {
         "tooltip": "Contáctanos por WhatsApp",
@@ -2604,42 +2614,22 @@
       },
       "projects": {
         "eyebrow": "Nuestros logros",
-        "title": "Proyectos presentados con fines ilustrativos.",
-        "lead": "Esta galería es una plantilla editable: reemplaza cada ejemplo con tus propios proyectos, con fotos, descripciones, categorías y tecnologías utilizadas. Aquí no se inventan clientes ni referencias.",
-        "note": "Contenido de ejemplo: reemplácelo con sus logros reales.",
+        "title": "Nuestros logros en imágenes",
+        "lead": "Fotografías de trabajos ya realizados por BGS. Los títulos y detalles de cada misión pueden completarse en cualquier momento.",
+        "note": "Galería de fotografías de logros de BGS.",
         "filters": {
-          "all": "Todos",
-          "infrastructure": "Infraestructura",
-          "reseaux": "Redes",
-          "securite": "Seguridad",
-          "cloud": "nube",
-          "developpement": "Desarrollo"
+          "all": "Todas",
+          "realisations": "Fotos de los logros"
         },
         "items": [
-          {
-            "name": "Despliegue de infraestructura",
-            "description": "Ejemplo de misión: diseño e instalación de una infraestructura virtualizada, con documentación operativa."
-          },
-          {
-            "name": "Modernización de la red",
-            "description": "Ejemplo de misión: reestructuración de una red local, cableado estructurado y despliegue de Wi-Fi profesional."
-          },
-          {
-            "name": "Refuerzo de seguridad",
-            "description": "Ejemplo de misión: auditoría de seguridad, configuración de firewalls e implementación de una política de respaldo."
-          },
-          {
-            "name": "Migración a la nube",
-            "description": "Ejemplo de misión: cambio gradual de servicios y cuentas de usuarios a un entorno de nube."
-          },
-          {
-            "name": "Aplicación empresarial",
-            "description": "Ejemplo de misión: desarrollo de una aplicación web de gestión con automatización de procesos."
-          },
-          {
-            "name": "Videovigilancia IP",
-            "description": "Ejemplo de misión: instalación de cámaras IP, configuración de acceso remoto y control de acceso."
-          }
+          { "name": "Logro BGS — 01", "description": "Fotografía de una misión realizada por BGS." },
+          { "name": "Logro BGS — 02", "description": "Fotografía de una misión realizada por BGS." },
+          { "name": "Logro BGS — 03", "description": "Fotografía de una misión realizada por BGS." },
+          { "name": "Logro BGS — 04", "description": "Fotografía de una misión realizada por BGS." },
+          { "name": "Logro BGS — 05", "description": "Fotografía de una misión realizada por BGS." },
+          { "name": "Logro BGS — 06", "description": "Fotografía de una misión realizada por BGS." },
+          { "name": "Logro BGS — 07", "description": "Fotografía de una misión realizada por BGS." },
+          { "name": "Logro BGS — 08", "description": "Fotografía de una misión realizada por BGS." }
         ],
         "cta": {
           "title": "Tus proyectos merecen una presentación digna",

@@ -420,6 +420,24 @@ p { margin: 0; }
   border-color: rgba(111, 184, 255, .55);
   color: #FFF;
 }
+/* Les produits du catalogue se distinguent des simples marques. */
+.brand-chip-product {
+  gap: 8px;
+  background: rgba(22, 139, 255, .16);
+  border-color: rgba(111, 184, 255, .48);
+  color: #FFF;
+}
+.brand-chip-tag {
+  font-size: .62rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--navy);
+  background: var(--electric-soft);
+  border-radius: 100px;
+  padding: 2px 8px;
+  line-height: 1.4;
+}
 @keyframes bgs-brand-scroll {
   from { transform: translate3d(0, 0, 0); }
   to   { transform: translate3d(-50%, 0, 0); }

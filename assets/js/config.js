@@ -132,18 +132,21 @@
     featuredProductId: 'cable-fibre',
 
     /**
-     * Réalisations — MODIFIABLES.
-     * Remplacez ces éléments par vos vrais projets. Ces données sont
-     * volontairement génériques : aucun client ni référence n'est inventé.
-     * Le texte visible est traduit dans i18n.js (clé projects.items[i]).
+     * Réalisations — photos de travaux déjà effectués par BGS.
+     * Les huit photographies fournies sont intégrées dans la galerie.
+     * Les intitulés et descriptions restent volontairement neutres :
+     * modifiez-les dans i18n.js (clé projects.items[i]) si vous souhaitez
+     * préciser chaque mission. Aucun client ni référence n'est inventé.
      */
     projects: [
-      { id: 'infra',     category: 'infrastructure', image: 'assets/img/projects/infrastructure.svg', year: '', tags: ['Windows Server', 'Virtualisation', 'Supervision'] },
-      { id: 'reseau',    category: 'reseaux',        image: 'assets/img/projects/reseaux.svg',        year: '', tags: ['Cat6', 'Fibre optique', 'Wi-Fi pro'] },
-      { id: 'securite',  category: 'securite',       image: 'assets/img/projects/securite.svg',      year: '', tags: ['Pare-feu', 'Audit', 'Sauvegarde'] },
-      { id: 'cloud',     category: 'cloud',          image: 'assets/img/projects/cloud.svg',         year: '', tags: ['Microsoft 365', 'Migration', 'Identité'] },
-      { id: 'web',       category: 'developpement',  image: 'assets/img/projects/developpement.svg', year: '', tags: ['Application web', 'API', 'Automatisation'] },
-      { id: 'video',     category: 'securite',       image: 'assets/img/projects/videosurveillance.svg', year: '', tags: ['Caméras IP', 'Contrôle d’accès', 'Supervision'] }
+      { id: 'realisation-01', category: 'realisations', image: 'assets/img/realisations/realisation-01.jpg', year: '', tags: [] },
+      { id: 'realisation-02', category: 'realisations', image: 'assets/img/realisations/realisation-02.jpg', year: '', tags: [] },
+      { id: 'realisation-03', category: 'realisations', image: 'assets/img/realisations/realisation-03.jpg', year: '', tags: [] },
+      { id: 'realisation-04', category: 'realisations', image: 'assets/img/realisations/realisation-04.jpg', year: '', tags: [] },
+      { id: 'realisation-05', category: 'realisations', image: 'assets/img/realisations/realisation-05.jpg', year: '', tags: [] },
+      { id: 'realisation-06', category: 'realisations', image: 'assets/img/realisations/realisation-06.jpg', year: '', tags: [] },
+      { id: 'realisation-07', category: 'realisations', image: 'assets/img/realisations/realisation-07.jpg', year: '', tags: [] },
+      { id: 'realisation-08', category: 'realisations', image: 'assets/img/realisations/realisation-08.jpg', year: '', tags: [] }
     ]
   };
 })(window);

@@ -193,18 +193,30 @@
   var RENDERERS = {};
 
   /**
-   * Bandeau défilant de marques PC / télécom.
+   * Bandeau défilant : marques PC / télécom + produits du catalogue BGS.
+   * Les produits ajoutés depuis l'admin sont chargés via /api/products avant
+   * le premier rendu (voir loadSiteState) et apparaissent donc ici aussi.
    * La liste est dupliquée pour une boucle sans coupure ; la copie est
    * masquée aux lecteurs d'écran afin de ne pas annoncer deux fois les noms.
    */
   RENDERERS.brandMarquee = function () {
     var brands = (CFG.brands || []).filter(function (name) { return !!String(name).trim(); });
-    if (!brands.length) return '';
+    var products = (getProducts() || []).map(function (p) {
+      var name = localized(p && p.name);
+      return name ? String(name).trim() : '';
+    }).filter(Boolean);
+    if (!brands.length && !products.length) return '';
+
+    var tag = esc(t('brands.productTag'));
 
     function group(hidden) {
       return '<div class="brand-marquee-group"' + (hidden ? ' aria-hidden="true"' : '') + '>' +
         brands.map(function (name) {
           return '<span class="brand-chip">' + esc(name) + '</span>';
+        }).join('') +
+        products.map(function (name) {
+          return '<span class="brand-chip brand-chip-product">' +
+            '<span class="brand-chip-tag">' + tag + '</span>' + esc(name) + '</span>';
         }).join('') + '</div>';
     }
 
@@ -361,9 +373,12 @@
 
   RENDERERS.projectFilters = function () {
     var f = DICT[lang].projects.filters;
-    var keys = ['all', 'infrastructure', 'reseaux', 'securite', 'cloud', 'developpement'];
+    var keys = ['all'];
+    (CFG.projects || []).forEach(function (p) {
+      if (p.category && keys.indexOf(p.category) < 0) keys.push(p.category);
+    });
     return keys.map(function (k, i) {
-      return '<button type="button" class="filter-btn' + (i === 0 ? ' is-active' : '') + '" data-filter="' + k + '" aria-pressed="' + (i === 0) + '">' + esc(f[k]) + '</button>';
+      return '<button type="button" class="filter-btn' + (i === 0 ? ' is-active' : '') + '" data-filter="' + k + '" aria-pressed="' + (i === 0) + '">' + esc(f[k] || k) + '</button>';
     }).join('');
   };
 
@@ -377,7 +392,6 @@
           '<span class="project-tag">' + esc(copy.filters[p.category] || p.category) + '</span></div>' +
         '<div class="project-body"><h3>' + esc(text.name) + '</h3><p>' + esc(text.description) + '</p>' +
           '<div class="project-tech">' + (p.tags || []).map(function (tag) { return '<span>' + esc(tag) + '</span>'; }).join('') + '</div>' +
-          '<div class="project-note">' + esc(t('common.example')) + '</div>' +
         '</div></article>';
     }).join('');
   };
@@ -864,7 +878,7 @@
   }
 
   function refreshProducts() {
-    var targets = ['productFilters', 'productsGrid', 'stockStats'];
+    var targets = ['productFilters', 'productsGrid', 'stockStats', 'brandMarquee'];
     targets.forEach(function (name) {
       var el = document.querySelector('[data-render="' + name + '"]');
       var fn = RENDERERS[name];
