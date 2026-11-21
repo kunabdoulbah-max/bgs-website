@@ -17,8 +17,9 @@
       // Titre suffixe dans les balises <title>
       titleSuffix: 'BGS — Solutions informatiques & transformation numérique',
       email: '',            // Ex. : contact@bgs.example
-      phone: '',            // Ex. : +222 00 00 00 00 (affiché tel quel)
-      phoneInternational: '', // Ex. : 22200000000 (pour les liens tel:)
+      // Numéro officiel BGS fourni : 46071669 (indicatif +222 ajouté).
+      phone: '+222 46 07 16 69',       // Format affiché sur le site
+      phoneInternational: '22246071669', // Format utilisé pour les liens tel:
       address: '',          // Ex. : Immeuble BGS, Nouakchott, Mauritanie
       city: '',
       country: 'Mauritanie'
@@ -147,7 +148,11 @@
       { id: 'realisation-06', category: 'realisations', image: 'assets/img/realisations/realisation-06.jpg', year: '', tags: [] },
       { id: 'realisation-07', category: 'realisations', image: 'assets/img/realisations/realisation-07.jpg', year: '', tags: [] },
       { id: 'realisation-08', category: 'realisations', image: 'assets/img/realisations/realisation-08.jpg', year: '', tags: [] },
-      { id: 'realisation-09', category: 'realisations', image: 'assets/img/realisations/realisation-09.jpg', year: '', tags: [] }
+      { id: 'realisation-09', category: 'realisations', image: 'assets/img/realisations/realisation-09.jpg', year: '', tags: [] },
+      { id: 'realisation-10', category: 'realisations', image: 'assets/img/realisations/realisation-10.jpg', year: '', tags: [] },
+      { id: 'realisation-11', category: 'realisations', image: 'assets/img/realisations/realisation-11.jpg', year: '', tags: [] },
+      { id: 'realisation-12', category: 'realisations', image: 'assets/img/realisations/realisation-12.jpg', year: '', tags: [] },
+      { id: 'realisation-13', category: 'realisations', image: 'assets/img/realisations/realisation-13.jpg', year: '', tags: [] }
     ]
   };
 })(window);
