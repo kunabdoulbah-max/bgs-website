@@ -70,6 +70,12 @@
         label: 'Marques d’ordinateurs et de télécommunications prises en charge (défilement)',
         productTag: 'Produit'
       },
+      techShowcase: {
+        eyebrow: 'Environnement technologique',
+        title: 'PC, ordinateurs, téléphones & téléphonie',
+        subtitle: 'Des visuels illustratifs de l’écosystème informatique et télécom que BGS accompagne, installe et prend en charge.',
+        label: 'Galerie visuelle d’équipements informatiques et télécom'
+      },
       wa: {
         tooltip: 'Contactez-nous sur WhatsApp', header: 'WhatsApp',
         message: 'Bonjour BGS, je souhaite obtenir des informations sur vos prestations de services informatiques.',
@@ -637,6 +643,12 @@
         label: 'Supported computer and telecom brands (scrolling)',
         productTag: 'Product'
       },
+      techShowcase: {
+        eyebrow: 'Technology environment',
+        title: 'PCs, computers, phones & telephony',
+        subtitle: 'Illustrative visuals of the IT and telecom equipment ecosystem that BGS supports, installs and maintains.',
+        label: 'Visual gallery of IT and telecom equipment'
+      },
       wa: {
         tooltip: 'Contact us on WhatsApp', header: 'WhatsApp',
         message: 'Hello BGS, I would like to get information about your IT services.',
@@ -1202,6 +1214,12 @@
         subtitle: 'يتدخل BGS على مجموعة واسعة من المعدات. توضح هذه القائمة نطاق التوافق والدعم لدينا، ولا تعني أي شراكة تجارية. كما تظهر منتجات كتالوج BGS في هذا الشريط المتحرك.',
         label: 'علامات الحواسيب والاتصالات المدعومة (قائمة متحركة)',
         productTag: 'منتج'
+      },
+      techShowcase: {
+        eyebrow: 'البيئة التقنية',
+        title: 'أجهزة الكمبيوتر والهواتف والاتصالات',
+        subtitle: 'صور توضيحية لمنظومة معدات تكنولوجيا المعلومات والاتصالات التي ترافقها BGS وتُركّبها وتدعمها.',
+        label: 'معرض مرئي لمعدات تكنولوجيا المعلومات والاتصالات'
       },
       wa: {
         tooltip: 'تواصل معنا عبر واتساب', header: 'واتساب',
@@ -1824,6 +1842,12 @@
         "subtitle": "BGS interviene en una amplia gama de equipos. Esta lista ilustra nuestro ámbito de compatibilidad y soporte; no implica ninguna asociación comercial. Los productos del catálogo BGS también aparecen en esta banda.",
         "label": "Marcas de ordenadores y telecomunicaciones compatibles (desplazamiento)",
         "productTag": "Producto"
+      },
+      "techShowcase": {
+        "eyebrow": "Entorno tecnológico",
+        "title": "PC, ordenadores, teléfonos y telefonía",
+        "subtitle": "Visuales ilustrativos del ecosistema de equipos informáticos y de telecomunicaciones que BGS acompaña, instala y mantiene.",
+        "label": "Galería visual de equipos informáticos y de telecomunicaciones"
       },
       "wa": {
         "tooltip": "Contáctanos por WhatsApp",

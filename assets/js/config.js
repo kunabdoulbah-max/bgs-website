@@ -86,6 +86,85 @@
     ],
 
     /**
+     * Logos réels des marques (fichiers locaux du dossier assets/img/brands).
+     * Clé = nom exact utilisé dans `brands`. Une marque sans logo reste en texte.
+     */
+    brandLogos: {
+      'Apple': 'assets/img/brands/apple.svg',
+      'ASUS': 'assets/img/brands/asus.svg',
+      'Acer': 'assets/img/brands/acer.svg',
+      'Dell': 'assets/img/brands/dell.svg',
+      'HP': 'assets/img/brands/hp.svg',
+      'Lenovo': 'assets/img/brands/lenovo.svg',
+      'MSI': 'assets/img/brands/msi.svg',
+      'Toshiba': 'assets/img/brands/toshiba.svg',
+      'Sony': 'assets/img/brands/sony.svg',
+      'Samsung': 'assets/img/brands/samsung.svg',
+      'LG': 'assets/img/brands/lg.svg',
+      'Fujitsu': 'assets/img/brands/fujitsu.svg',
+      'NEC': 'assets/img/brands/nec.svg',
+      'Panasonic': 'assets/img/brands/panasonic.svg',
+      'IBM': 'assets/img/brands/ibm.png',
+      'Supermicro': 'assets/img/brands/supermicro.svg',
+      'Microsoft': 'assets/img/brands/microsoft.png',
+      'Intel': 'assets/img/brands/intel.svg',
+      'AMD': 'assets/img/brands/amd.svg',
+      'NVIDIA': 'assets/img/brands/nvidia.svg',
+      'Razer': 'assets/img/brands/razer.svg',
+      'Alienware': 'assets/img/brands/alienware.svg',
+      'Huawei': 'assets/img/brands/huawei.svg',
+      'Honor': 'assets/img/brands/honor.svg',
+      'Xiaomi': 'assets/img/brands/xiaomi.svg',
+      'OnePlus': 'assets/img/brands/oneplus.svg',
+      'OPPO': 'assets/img/brands/oppo.svg',
+      'vivo': 'assets/img/brands/vivo.svg',
+      'Motorola': 'assets/img/brands/motorola.svg',
+      'Google': 'assets/img/brands/google.svg',
+      'Nokia': 'assets/img/brands/nokia.svg',
+      'Alcatel': 'assets/img/brands/alcatel.png',
+      'ZTE': 'assets/img/brands/zte.png',
+      'BlackBerry': 'assets/img/brands/blackberry.svg',
+      'Cisco': 'assets/img/brands/cisco.svg',
+      'Ericsson': 'assets/img/brands/ericsson.svg',
+      'Alcatel-Lucent': 'assets/img/brands/alcatel-lucent.png',
+      'MikroTik': 'assets/img/brands/mikrotik.svg',
+      'Fortinet': 'assets/img/brands/fortinet.svg',
+      'Ubiquiti': 'assets/img/brands/ubiquiti.svg',
+      'TP-Link': 'assets/img/brands/tp-link.svg',
+      'NETGEAR': 'assets/img/brands/netgear.svg',
+      'D-Link': 'assets/img/brands/d-link.png',
+      'Juniper': 'assets/img/brands/juniper.svg',
+      'Aruba': 'assets/img/brands/aruba.png',
+      'Avaya': 'assets/img/brands/avaya.png',
+      'Yealink': 'assets/img/brands/yealink.png',
+      'Grandstream': 'assets/img/brands/grandstream.png',
+      'Poly': 'assets/img/brands/poly.svg',
+      'Snom': 'assets/img/brands/snom.png',
+      'Hughes': 'assets/img/brands/hughes.png',
+      'Gilat': 'assets/img/brands/gilat.png',
+      'Viasat': 'assets/img/brands/viasat.png',
+      'iDirect': 'assets/img/brands/idirect.png',
+      'Palo Alto': 'assets/img/brands/palo-alto.svg',
+      'Check Point': 'assets/img/brands/check-point.png',
+      'Sophos': 'assets/img/brands/sophos.png',
+      'WatchGuard': 'assets/img/brands/watchguard.png',
+    },
+
+    /**
+     * Vitrine visuelle : vraies photos libres (Pexels) pour animer le site.
+     * Ne pas présenter comme des projets clients BGS ; ce sont des visuels illustratifs.
+     */
+    techShowcase: [
+      { src: 'assets/img/tech-pc-ecran.jpg', label: { fr: 'PC & postes de travail', en: 'PCs & workstations', ar: 'أجهزة الكمبيوتر ومحطات العمل', es: 'PC y estaciones de trabajo' } },
+      { src: 'assets/img/tech-laptop-bureau.jpg', label: { fr: 'Ordinateurs portables', en: 'Laptops', ar: 'أجهزة الكمبيوتر المحمولة', es: 'Portátiles' } },
+      { src: 'assets/img/tech-smartphone-main.jpg', label: { fr: 'Smartphones & mobilité', en: 'Smartphones & mobility', ar: 'الهواتف الذكية والتنقل', es: 'Smartphones y movilidad' } },
+      { src: 'assets/img/tech-telephone-fixe.jpg', label: { fr: 'Téléphonie & communication', en: 'Telephony & communication', ar: 'الهاتف والاتصالات', es: 'Telefonía y comunicación' } },
+      { src: 'assets/img/tech-laptop-moderne.jpg', label: { fr: 'Solutions informatiques', en: 'IT solutions', ar: 'حلول تقنية المعلومات', es: 'Soluciones informáticas' } },
+      { src: 'assets/img/tech-smartphone-desk.jpg', label: { fr: 'Appareils connectés', en: 'Connected devices', ar: 'الأجهزة المتصلة', es: 'Dispositivos conectados' } }
+    ],
+
+
+    /**
      * Catalogue produits — MODIFIABLES.
      * Remplacez ces exemples par vos vraies références. Aucun prix ni produit
      * réel n'est inventé : les champs ci-dessous sont des modèles.

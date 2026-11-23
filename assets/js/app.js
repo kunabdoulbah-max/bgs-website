@@ -212,7 +212,11 @@
     function group(hidden) {
       return '<div class="brand-marquee-group"' + (hidden ? ' aria-hidden="true"' : '') + '>' +
         brands.map(function (name) {
-          return '<span class="brand-chip">' + esc(name) + '</span>';
+          var logo = (CFG.brandLogos || {})[name];
+          if (!logo) return '<span class="brand-chip">' + esc(name) + '</span>';
+          return '<span class="brand-chip brand-chip-logo" title="' + esc(name) + '">' +
+            '<img src="' + esc(logo) + '" alt="' + esc(name) + '" decoding="async">' +
+            '</span>';
         }).join('') +
         products.map(function (name) {
           return '<span class="brand-chip brand-chip-product">' +
@@ -220,6 +224,25 @@
         }).join('') + '</div>';
     }
 
+    return group(false) + group(true);
+  };
+
+  RENDERERS.techShowcase = function () {
+    var items = CFG.techShowcase || [];
+    if (!items.length) return '';
+    function card(item, hidden) {
+      var label = esc(localized(item.label) || '');
+      var src = esc(item.src || '');
+      return '<figure class="tech-card"' + (hidden ? ' aria-hidden="true"' : '') + '>' +
+        '<img src="' + src + '" alt="' + (hidden ? '' : label) + '"' + (hidden ? ' loading="lazy"' : '') + ' decoding="async">' +
+        '<figcaption class="tech-card-label">' + label + '</figcaption>' +
+        '</figure>';
+    }
+    var group = function (hidden) {
+      return '<div class="tech-marquee-group"' + (hidden ? ' aria-hidden="true"' : '') + '>' +
+        items.map(function (item) { return card(item, hidden); }).join('') +
+        '</div>';
+    };
     return group(false) + group(true);
   };
 
@@ -565,15 +588,15 @@
   };
 
   var POPUP_ROOT_ID = 'productWeekRoot';
-  var POPUP_SEEN_KEY = 'bgs-product-week-seen-v1';
+  var POPUP_SEEN_KEY = 'bgs-product-week-seen-v2';
   var popupAutoScheduled = false;
 
   function popupSeen() {
-    try { return localStorage.getItem(POPUP_SEEN_KEY) === '1'; } catch (e) { return false; }
+    try { return sessionStorage.getItem(POPUP_SEEN_KEY) === '1'; } catch (e) { return false; }
   }
 
   function markPopupSeen() {
-    try { localStorage.setItem(POPUP_SEEN_KEY, '1'); } catch (e) { /* stockage indisponible */ }
+    try { sessionStorage.setItem(POPUP_SEEN_KEY, '1'); } catch (e) { /* stockage indisponible */ }
   }
 
   function openProductPopup() {
@@ -643,13 +666,13 @@
 
   function maybeAutoShowPopup() {
     if (document.body.dataset.page === 'admin') return;
-    if (popupAutoScheduled || popupSeen()) return;
+    if (popupAutoScheduled) return;
     popupAutoScheduled = true;
     window.setTimeout(function () {
       var dialog = document.getElementById('productPop');
       if (!dialog || dialog.hidden === false) return;
       openProductPopup();
-    }, 2200);
+    }, 500);
   }
 
   RENDERERS.itsupportFeatures = function () {
@@ -878,7 +901,7 @@
   }
 
   function refreshProducts() {
-    var targets = ['productFilters', 'productsGrid', 'stockStats', 'brandMarquee'];
+    var targets = ['productFilters', 'productsGrid', 'stockStats', 'brandMarquee', 'techShowcase'];
     targets.forEach(function (name) {
       var el = document.querySelector('[data-render="' + name + '"]');
       var fn = RENDERERS[name];
