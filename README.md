@@ -32,7 +32,7 @@ Tout se passe dans **`assets/js/config.js`**. Aucune page n'a besoin d'être mod
 | Téléphone|`site.phone` / `site.phoneInternational`|Numéro affiché et numéro pour les liens `tel:` (sans `+` pour ce dernier).|
 | Adresse|`site.address`|Adresse réelle du siège.|
 | Ville / pays|`site.city`, `site.country`|Informations complémentaires.|
-| URL du site|`site.url`|Remplacer `https://www.bgs.example` par le vrai domaine (canonical, SEO, sitemap).|
+| URL du site|`site.url`|URL publique actuelle : `https://bgs.onrender.com` (canonical, SEO, sitemap).|
 | Réseaux sociaux|`social.*`|Coller les URLs ; les liens vides sont automatiquement masqués.|
 | Formulaire|`contact.endpoint`|`/api/contact` avec le serveur fourni, ou URL d'un service externe (voir §6).|
 | Réalisations|`projects`|Remplacer les 6 projets d'exemple par vos projets réels (images, catégories, technologies).|
@@ -253,7 +253,7 @@ Variables d’environnement utiles :
 
 ## 18. Hébergement gratuit (Render + Neon)
 
-**Site en ligne : https://bgs-site.onrender.com**
+**Site en ligne : https://bgs.onrender.com**
 
 Le guide complet est dans **`DEPLOY.md`**. En résumé :
 

@@ -2,8 +2,8 @@
 
 ## ✅ Déploiement actuel (en ligne)
 
-- **Site** : https://bgs-site.onrender.com
-- **Admin** : https://bgs-site.onrender.com/admin.html (créez votre compte au premier accès)
+- **Site** : https://bgs.onrender.com
+- **Admin** : https://bgs.onrender.com/admin.html (créez votre compte au premier accès)
 - **Code source** : https://github.com/kunabdoulbah-max/bgs-website
 - **Base** : Neon `bgs-site` (Frankfurt), 7 produits initiaux, 0 compte admin
 

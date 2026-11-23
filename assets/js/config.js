@@ -13,7 +13,7 @@
     site: {
       name: 'BGS',
       // URL publique du site (utilisée pour le canonical, le sitemap et les métadonnées)
-      url: 'https://www.bgs.example',
+      url: 'https://bgs.onrender.com',
       // Titre suffixe dans les balises <title>
       titleSuffix: 'BGS — Solutions informatiques & transformation numérique',
       email: '',            // Ex. : contact@bgs.example
