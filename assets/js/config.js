@@ -155,10 +155,13 @@
      * Ne pas présenter comme des projets clients BGS ; ce sont des visuels illustratifs.
      */
     techShowcase: [
+      { src: 'assets/img/tech-fibre-optique-switch.jpg', label: { fr: 'Fibre optique & réseau', en: 'Fiber optics & network', ar: 'الألياف الضوئية والشبكات', es: 'Fibra óptica y red' } },
       { src: 'assets/img/tech-pc-ecran.jpg', label: { fr: 'PC & postes de travail', en: 'PCs & workstations', ar: 'أجهزة الكمبيوتر ومحطات العمل', es: 'PC y estaciones de trabajo' } },
       { src: 'assets/img/tech-laptop-bureau.jpg', label: { fr: 'Ordinateurs portables', en: 'Laptops', ar: 'أجهزة الكمبيوتر المحمولة', es: 'Portátiles' } },
       { src: 'assets/img/tech-smartphone-main.jpg', label: { fr: 'Smartphones & mobilité', en: 'Smartphones & mobility', ar: 'الهواتف الذكية والتنقل', es: 'Smartphones y movilidad' } },
+      { src: 'assets/img/tech-fibre-patch-panel.jpg', label: { fr: 'Raccordement fibre optique', en: 'Fiber optic cabling', ar: 'توصيل الألياف الضوئية', es: 'Cableado de fibra óptica' } },
       { src: 'assets/img/tech-telephone-fixe.jpg', label: { fr: 'Téléphonie & communication', en: 'Telephony & communication', ar: 'الهاتف والاتصالات', es: 'Telefonía y comunicación' } },
+      { src: 'assets/img/tech-fibre-cables-reseau.jpg', label: { fr: 'Câblage réseau & infrastructure', en: 'Network cabling & infrastructure', ar: 'كابلات الشبكة والبنية التحتية', es: 'Cableado de red e infraestructura' } },
       { src: 'assets/img/tech-laptop-moderne.jpg', label: { fr: 'Solutions informatiques', en: 'IT solutions', ar: 'حلول تقنية المعلومات', es: 'Soluciones informáticas' } },
       { src: 'assets/img/tech-smartphone-desk.jpg', label: { fr: 'Appareils connectés', en: 'Connected devices', ar: 'الأجهزة المتصلة', es: 'Dispositivos conectados' } }
     ],

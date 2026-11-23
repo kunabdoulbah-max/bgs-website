@@ -72,8 +72,8 @@
       },
       techShowcase: {
         eyebrow: 'Environnement technologique',
-        title: 'PC, ordinateurs, téléphones & téléphonie',
-        subtitle: 'Des visuels illustratifs de l’écosystème informatique et télécom que BGS accompagne, installe et prend en charge.',
+        title: 'Fibre optique, PC, ordinateurs, téléphones & téléphonie',
+        subtitle: 'Des visuels illustratifs de l’écosystème fibre optique, informatique et télécom que BGS accompagne, installe et prend en charge.',
         label: 'Galerie visuelle d’équipements informatiques et télécom'
       },
       wa: {
@@ -645,8 +645,8 @@
       },
       techShowcase: {
         eyebrow: 'Technology environment',
-        title: 'PCs, computers, phones & telephony',
-        subtitle: 'Illustrative visuals of the IT and telecom equipment ecosystem that BGS supports, installs and maintains.',
+        title: 'Fiber optics, PCs, computers, phones & telephony',
+        subtitle: 'Illustrative visuals of the fiber optic, IT and telecom equipment ecosystem that BGS supports, installs and maintains.',
         label: 'Visual gallery of IT and telecom equipment'
       },
       wa: {
@@ -1217,8 +1217,8 @@
       },
       techShowcase: {
         eyebrow: 'البيئة التقنية',
-        title: 'أجهزة الكمبيوتر والهواتف والاتصالات',
-        subtitle: 'صور توضيحية لمنظومة معدات تكنولوجيا المعلومات والاتصالات التي ترافقها BGS وتُركّبها وتدعمها.',
+        title: 'الألياف الضوئية وأجهزة الكمبيوتر والهواتف والاتصالات',
+        subtitle: 'صور توضيحية لمنظومة الألياف الضوئية ومعدات تكنولوجيا المعلومات والاتصالات التي ترافقها BGS وتُركّبها وتدعمها.',
         label: 'معرض مرئي لمعدات تكنولوجيا المعلومات والاتصالات'
       },
       wa: {
@@ -1845,8 +1845,8 @@
       },
       "techShowcase": {
         "eyebrow": "Entorno tecnológico",
-        "title": "PC, ordenadores, teléfonos y telefonía",
-        "subtitle": "Visuales ilustrativos del ecosistema de equipos informáticos y de telecomunicaciones que BGS acompaña, instala y mantiene.",
+        "title": "Fibra óptica, PC, ordenadores, teléfonos y telefonía",
+        "subtitle": "Visuales ilustrativos del ecosistema de fibra óptica, equipos informáticos y de telecomunicaciones que BGS acompaña, instala y mantiene.",
         "label": "Galería visual de equipos informáticos y de telecomunicaciones"
       },
       "wa": {
