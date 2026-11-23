@@ -1460,7 +1460,7 @@
             id: 'developpement', icon: 'code', name: 'تطوير الويب وCRM والتطبيقات',
             short: 'مواقع ويب وأنظمة CRM وتطبيقات أعمال مصممة حسب عملياتك.',
             description: 'تصميم وتطوير مواقع ويب احترافية، ومواقع/حلول CRM، وتطبيقات ويب وهاتف، مع التكامل مع الأنظمة الحالية وأتمتة المهام.',
-            features: ['إنشاء مواقع الويب', 'إنشاء موقع CRM', 'تطوير أنظمة CRM', 'تطبيقات الويب والهاتف', 'تطبيقات الإدارة', 'الأتمتة والتكامل'],
+            features: ['إنشاء مواقع الويب', 'إنشاء موقع CRM', 'تطوير أنظمة CRM', 'تطبيقات الويب والهاتف', 'تطبيقات الإدارة', 'الإعلان الرقمي', 'الأتمتة والتكامل'],
             detailTitle: 'من الحاجة التجارية إلى أداة تشغيلية',
             deliverables: ['مواصفات ونماذج وظيفية', 'تطبيق مطوّر ومُختبر', 'وثائق تقنية وتدريب المستخدمين'],
             benefits: ['عمليات أكثر سلاسة', 'بيانات مركزية', 'أدوات قابلة للتوسع والصيانة']
@@ -2300,10 +2300,10 @@
             ]
           },
           {
-            "id": "desarrollo",
-            "icon": "código",
-            "name": "desarrollo de TI",
-            "short": "Herramientas digitales adaptadas a tus procesos de negocio.",
+            "id": "developpement",
+            "icon": "code",
+            "name": "Desarrollo web, CRM y aplicaciones",
+            "short": "Sitios web, CRM y aplicaciones adaptadas a sus procesos.",
             "description": "Diseño y desarrollo de sitios web profesionales, sitios/soluciones CRM y aplicaciones web y móviles, con integración a sistemas existentes y automatización de tareas.",
             "features": [
               "Creación de sitios web",
