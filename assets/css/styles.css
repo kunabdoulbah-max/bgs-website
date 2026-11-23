@@ -531,14 +531,14 @@ p { margin: 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .brand-marquee-track, .tech-marquee-track { animation: none; }
-  .brand-marquee-viewport, .tech-marquee-viewport {
+  .brand-marquee-track, .tech-marquee-track, .projects-marquee-track { animation: none; }
+  .brand-marquee-viewport, .tech-marquee-viewport, .projects-marquee {
     overflow-x: auto;
     -webkit-mask-image: none;
     mask-image: none;
     scrollbar-color: var(--electric) rgba(255, 255, 255, .12);
   }
-  .brand-marquee-group[aria-hidden="true"], .tech-marquee-group[aria-hidden="true"] { display: none; }
+  .brand-marquee-group[aria-hidden="true"], .tech-marquee-group[aria-hidden="true"], .projects-marquee-group[aria-hidden="true"] { display: none; }
 }
 @media (max-width: 640px) {
   .brand-chip { min-height: 42px; padding: 0 16px; font-size: .86rem; }
