@@ -238,6 +238,15 @@ async function initStore() {
       position integer NOT NULL DEFAULT 0
     );
     ALTER TABLE bgs_products ADD COLUMN IF NOT EXISTS image text NOT NULL DEFAULT '';
+    CREATE TABLE IF NOT EXISTS bgs_projects (
+      id text PRIMARY KEY,
+      category text NOT NULL,
+      image text NOT NULL DEFAULT '',
+      name jsonb NOT NULL,
+      description jsonb NOT NULL,
+      tags jsonb NOT NULL DEFAULT '[]'::jsonb,
+      position integer NOT NULL DEFAULT 0
+    );
     CREATE TABLE IF NOT EXISTS bgs_leads (
       id text PRIMARY KEY,
       received_at timestamptz NOT NULL,
@@ -509,6 +518,167 @@ async function handleAdminReset(req, res) {
   for (const key of sessions.keys()) sessions.delete(key);
   console.warn('[BGS] Compte administrateur réinitialisé via ADMIN_RESET_TOKEN.');
   return json(res, 200, { ok: true, setupRequired: true }, { 'Set-Cookie': clearSessionCookie() });
+}
+
+/* -------------------------------- Réalisations -------------------------------- */
+
+const PROJECTS_FILE = path.join(DATA_DIR, 'projects.json');
+const PROJECT_CATEGORIES = ['realisations'];
+
+function normalizeProjectImage(value) {
+  const raw = String(value || '').trim();
+  if (!raw) return '';
+  if (/^assets\/img\/realisations\/[a-z0-9._-]+\.(png|jpe?g|webp|gif)$/i.test(raw)) return raw;
+  return normalizeProductImage(raw);
+}
+
+function normalizeProject(raw, forcedId) {
+  const source = raw && typeof raw === 'object' ? raw : {};
+  const name = source.name && typeof source.name === 'object' ? source.name : { fr: source.name || '' };
+  const description = source.description && typeof source.description === 'object' ? source.description : { fr: source.description || '' };
+  const frName = clean(name.fr, 140) || 'Réalisation';
+  const tags = Array.isArray(source.tags) ? source.tags.map((t) => clean(t, 40)).filter(Boolean).slice(0, 8) : [];
+  return {
+    id: forcedId || clean(source.id, 90) || 'realisation',
+    category: PROJECT_CATEGORIES.includes(source.category) ? source.category : 'realisations',
+    image: normalizeProjectImage(source.image),
+    year: '',
+    tags,
+    name: {
+      fr: frName,
+      en: clean(name.en, 140) || frName,
+      ar: clean(name.ar, 140) || frName,
+      es: clean(name.es, 140) || frName
+    },
+    description: {
+      fr: clean(description.fr, 500),
+      en: clean(description.en, 500) || clean(description.fr, 500),
+      ar: clean(description.ar, 500) || clean(description.fr, 500),
+      es: clean(description.es, 500) || clean(description.fr, 500)
+    }
+  };
+}
+
+function defaultProjects() {
+  try {
+    const code = fs.readFileSync(path.join(ROOT, 'assets', 'js', 'config.js'), 'utf8');
+    const sandbox = { window: {} };
+    vm.runInNewContext(code, sandbox, { filename: 'config.js', timeout: 1000 });
+    const list = sandbox.window.BGS_CONFIG && sandbox.window.BGS_CONFIG.projects;
+    const i18nCode = fs.readFileSync(path.join(ROOT, 'assets', 'js', 'i18n.js'), 'utf8');
+    const i18nBox = { window: {} };
+    vm.runInNewContext(i18nCode, i18nBox, { filename: 'i18n.js', timeout: 1000 });
+    const frItems = (((i18nBox.window.BGS_I18N || {}).fr || {}).projects || {}).items || [];
+    const enItems = (((i18nBox.window.BGS_I18N || {}).en || {}).projects || {}).items || [];
+    const arItems = (((i18nBox.window.BGS_I18N || {}).ar || {}).projects || {}).items || [];
+    const esItems = (((i18nBox.window.BGS_I18N || {}).es || {}).projects || {}).items || [];
+    if (Array.isArray(list)) return list.map((p, i) => normalizeProject(Object.assign({}, p, {
+      name: { fr: (frItems[i] || {}).name, en: (enItems[i] || {}).name, ar: (arItems[i] || {}).name, es: (esItems[i] || {}).name },
+      description: { fr: (frItems[i] || {}).description, en: (enItems[i] || {}).description, ar: (arItems[i] || {}).description, es: (esItems[i] || {}).description }
+    })));
+  } catch (err) {
+    console.warn('[BGS] Réalisations initiales indisponibles:', err.message);
+  }
+  return [];
+}
+
+async function loadProjects() {
+  if (pool) {
+    const { rows } = await pool.query('SELECT id, category, image, name, description, tags FROM bgs_projects ORDER BY position ASC');
+    if (rows.length) return rows.map((p) => normalizeProject(p));
+    const initial = defaultProjects();
+    await saveProjects(initial);
+    return initial;
+  }
+  if (fs.existsSync(PROJECTS_FILE)) {
+    try {
+      const list = JSON.parse(fs.readFileSync(PROJECTS_FILE, 'utf8'));
+      if (Array.isArray(list)) return list.map((p) => normalizeProject(p));
+    } catch (err) {
+      console.warn('[BGS] Réalisations illisibles, réinitialisation:', err.message);
+    }
+  }
+  const list = defaultProjects();
+  await saveProjects(list);
+  return list;
+}
+
+async function saveProjects(list) {
+  if (pool) {
+    const client = await pool.connect();
+    try {
+      await client.query('BEGIN');
+      await client.query('DELETE FROM bgs_projects');
+      for (let i = 0; i < list.length; i++) {
+        const p = list[i];
+        await client.query(
+          `INSERT INTO bgs_projects (id, category, image, name, description, tags, position)
+           VALUES ($1,$2,$3,$4::jsonb,$5::jsonb,$6::jsonb,$7)`,
+          [p.id, p.category, p.image || '', JSON.stringify(p.name), JSON.stringify(p.description), JSON.stringify(p.tags || []), i]
+        );
+      }
+      await client.query('COMMIT');
+    } catch (err) {
+      await client.query('ROLLBACK');
+      throw err;
+    } finally {
+      client.release();
+    }
+    return;
+  }
+  fs.mkdirSync(DATA_DIR, { recursive: true });
+  const tmp = PROJECTS_FILE + '.' + process.pid + '.tmp';
+  fs.writeFileSync(tmp, JSON.stringify(list, null, 2) + '\n', { mode: 0o600 });
+  fs.renameSync(tmp, PROJECTS_FILE);
+}
+
+function validateProject(payload) {
+  const rawName = payload.name && typeof payload.name === 'object' ? payload.name : { fr: payload.name };
+  const rawDescription = payload.description && typeof payload.description === 'object' ? payload.description : { fr: payload.description };
+  const frName = clean(rawName.fr, 140);
+  if (!frName) return { error: 'name-required' };
+  const id = slugify(frName) + '-' + crypto.randomBytes(3).toString('hex');
+  return { project: normalizeProject({ id, category: payload.category, image: payload.image, tags: payload.tags, name: rawName, description: rawDescription }, id) };
+}
+
+async function handleProjectCreate(req, res) {
+  if (!requireAdmin(req, res)) return;
+  let payload;
+  try { payload = await readJsonBody(req, MAX_PRODUCT_BODY); } catch (e) { return json(res, 400, { ok: false, error: e && e.message === 'Body too large' ? 'image-too-large' : 'invalid-body' }); }
+  const result = validateProject(payload);
+  if (result.error) return json(res, 400, { ok: false, error: result.error });
+  const list = await loadProjects();
+  list.push(result.project);
+  try { await saveProjects(list); return json(res, 200, { ok: true, project: result.project, projects: list }); }
+  catch (err) { console.error('[BGS] Ajout réalisation:', err); return json(res, 500, { ok: false, error: 'server-error' }); }
+}
+
+async function handleProjectUpdate(req, res, id) {
+  if (!requireAdmin(req, res)) return;
+  let payload;
+  try { payload = await readJsonBody(req, MAX_PRODUCT_BODY); } catch (e) { return json(res, 400, { ok: false, error: e && e.message === 'Body too large' ? 'image-too-large' : 'invalid-body' }); }
+  const list = await loadProjects();
+  const index = list.findIndex((p) => p.id === id);
+  if (index < 0) return json(res, 404, { ok: false, error: 'not-found' });
+  const rawName = payload.name && typeof payload.name === 'object' ? payload.name : { fr: payload.name };
+  const rawDescription = payload.description && typeof payload.description === 'object' ? payload.description : { fr: payload.description };
+  const frName = clean(rawName.fr, 140);
+  if (!frName) return json(res, 400, { ok: false, error: 'name-required' });
+  const existing = list[index];
+  const image = payload.image ? normalizeProjectImage(payload.image) : (existing.image || '');
+  const updated = normalizeProject({ id: existing.id, category: payload.category, image, tags: payload.tags, name: rawName, description: rawDescription }, existing.id);
+  list[index] = updated;
+  try { await saveProjects(list); return json(res, 200, { ok: true, project: updated, projects: list }); }
+  catch (err) { console.error('[BGS] Mise à jour réalisation:', err); return json(res, 500, { ok: false, error: 'server-error' }); }
+}
+
+async function handleProjectDelete(req, res, id) {
+  if (!requireAdmin(req, res)) return;
+  const list = await loadProjects();
+  const next = list.filter((p) => p.id !== id);
+  if (next.length === list.length) return json(res, 404, { ok: false, error: 'not-found' });
+  try { await saveProjects(next); return json(res, 200, { ok: true, projects: next }); }
+  catch (err) { console.error('[BGS] Suppression réalisation:', err); return json(res, 500, { ok: false, error: 'server-error' }); }
 }
 
 /* -------------------------------- Catalogue -------------------------------- */
@@ -783,14 +953,8 @@ async function handleApi(req, res, url) {
   }
 
   if (p === '/api/products') {
-    if (req.method === 'GET') {
-      const products = await loadProducts();
-      return json(res, 200, { ok: true, products });
-    }
-    if (req.method === 'POST') {
-      handleProductCreate(req, res).catch(() => json(res, 500, { ok: false, error: 'server-error' }));
-      return;
-    }
+    if (req.method === 'GET') { const products = await loadProducts(); return json(res, 200, { ok: true, products }); }
+    if (req.method === 'POST') { handleProductCreate(req, res).catch(() => json(res, 500, { ok: false, error: 'server-error' })); return; }
     return json(res, 405, { ok: false, error: 'method-not-allowed' });
   }
   if (p === '/api/products/reset') {
@@ -803,6 +967,20 @@ async function handleApi(req, res, url) {
     try { id = decodeURIComponent(productMatch[1]); } catch { return json(res, 400, { ok: false, error: 'invalid-id' }); }
     if (req.method === 'DELETE') return await handleProductDelete(req, res, id);
     if (req.method === 'PUT') { handleProductUpdate(req, res, id).catch(() => json(res, 500, { ok: false, error: 'server-error' })); return; }
+    return json(res, 405, { ok: false, error: 'method-not-allowed' });
+  }
+
+  if (p === '/api/projects') {
+    if (req.method === 'GET') { const projects = await loadProjects(); return json(res, 200, { ok: true, projects }); }
+    if (req.method === 'POST') { handleProjectCreate(req, res).catch(() => json(res, 500, { ok: false, error: 'server-error' })); return; }
+    return json(res, 405, { ok: false, error: 'method-not-allowed' });
+  }
+  const projectMatch = p.match(/^\/api\/projects\/([^/]+)$/);
+  if (projectMatch) {
+    let id;
+    try { id = decodeURIComponent(projectMatch[1]); } catch { return json(res, 400, { ok: false, error: 'invalid-id' }); }
+    if (req.method === 'DELETE') return await handleProjectDelete(req, res, id);
+    if (req.method === 'PUT') { handleProjectUpdate(req, res, id).catch(() => json(res, 500, { ok: false, error: 'server-error' })); return; }
     return json(res, 405, { ok: false, error: 'method-not-allowed' });
   }
 

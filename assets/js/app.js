@@ -399,27 +399,54 @@
     }).join('');
   };
 
+  RENDERERS.projectAdmin = function () {
+    var copy = DICT[lang].projects;
+    var a = copy.admin || {};
+    if (!adminState.ready || !adminState.authenticated) return '';
+    return '<div class="product-admin reveal" style="margin-top:32px">' +
+      '<div class="section-head center"><div><span class="eyebrow">' + esc(a.eyebrow || 'Admin') + '</span><h2>' + esc(a.title || 'Gérer les réalisations') + '</h2><p>' + esc(a.note || '') + '</p></div></div>' +
+      '<form id="projectForm" class="product-form" novalidate>' +
+        '<input type="hidden" name="editingId">' +
+        '<label>' + esc(a.name || 'Nom') + '<input type="text" name="nameFr" required maxlength="140"></label>' +
+        '<label>' + esc(a.nameEn || 'Nom EN') + '<input type="text" name="nameEn" maxlength="140"></label>' +
+        '<label>' + esc(a.nameEs || 'Nom ES') + '<input type="text" name="nameEs" maxlength="140"></label>' +
+        '<label>' + esc(a.nameAr || 'Nom AR') + '<input type="text" name="nameAr" maxlength="140" dir="rtl"></label>' +
+        '<label>' + esc(a.description || 'Description') + '<textarea name="description" rows="3" maxlength="500"></textarea></label>' +
+        '<label>' + esc(a.descriptionEs || 'Description ES') + '<textarea name="descriptionEs" rows="3" maxlength="500"></textarea></label>' +
+        '<label>' + esc(a.image || 'Photo') + '<input type="file" name="image" accept="image/png,image/jpeg,image/webp,image/gif"><small>' + esc(a.imageHint || 'JPG, PNG, WebP ou GIF. Max 2 Mo.') + '</small></label>' +
+        '<div class="product-form-actions"><button type="submit" class="btn btn-primary" id="projectSubmit">' + esc(a.add || 'Ajouter') + '</button>' +
+          '<button type="button" class="btn btn-outline-dark" id="projectCancelEdit" hidden>' + esc(a.cancel || 'Annuler') + '</button></div>' +
+        '<p class="product-status" data-project-status role="status" aria-live="polite"></p>' +
+      '</form></div>';
+  };
+
   RENDERERS.projectFilters = function () {
     var f = DICT[lang].projects.filters;
     var keys = ['all'];
-    (CFG.projects || []).forEach(function (p) {
-      if (p.category && keys.indexOf(p.category) < 0) keys.push(p.category);
-    });
+    getProjects().forEach(function (p) { if (p.category && keys.indexOf(p.category) < 0) keys.push(p.category); });
     return keys.map(function (k, i) {
       return '<button type="button" class="filter-btn' + (i === 0 ? ' is-active' : '') + '" data-filter="' + k + '" aria-pressed="' + (i === 0) + '">' + esc(f[k] || k) + '</button>';
     }).join('');
   };
 
   RENDERERS.projectsGrid = function () {
-    var list = (CFG.projects || []);
+    var list = getProjects();
     var copy = DICT[lang].projects;
     function card(p, i, hidden) {
-      var text = copy.items[i] || { name: p.id, description: '' };
-      var alt = hidden ? '' : esc(text.name);
+      var text = (p.name && typeof p.name === 'object') ? p : ((copy.items && copy.items[i]) ? { name: copy.items[i].name, description: copy.items[i].description } : { name: p.id, description: '' });
+      var name = localized(text.name) || p.id;
+      var desc = localized(text.description) || '';
+      var alt = hidden ? '' : esc(name);
+      var adminActions = adminState.authenticated && !hidden
+        ? '<div class="product-admin-actions">' +
+            '<button type="button" class="product-edit" data-project-edit="' + esc(p.id) + '" title="' + esc((copy.admin && copy.admin.edit) || 'Modifier') + '"><span data-icon="pencil"></span></button>' +
+            '<button type="button" class="product-delete" data-project-delete="' + esc(p.id) + '" title="' + esc((copy.admin && copy.admin.delete) || 'Supprimer') + '"><span data-icon="close"></span></button>' +
+          '</div>' : '';
       return '<article class="project-card project-slide"' + (hidden ? ' aria-hidden="true"' : '') + ' data-category="' + esc(p.category) + '">' +
         '<div class="project-media"><img src="' + esc(p.image) + '" alt="' + alt + '" loading="lazy" decoding="async">' +
+          adminActions +
           '<span class="project-tag">' + esc(copy.filters[p.category] || p.category) + '</span></div>' +
-        '<div class="project-body"><h3>' + esc(text.name) + '</h3><p>' + esc(text.description) + '</p>' +
+        '<div class="project-body"><h3>' + esc(name) + '</h3><p>' + esc(desc) + '</p>' +
           '<div class="project-tech">' + (p.tags || []).map(function (tag) { return '<span>' + esc(tag) + '</span>'; }).join('') + '</div>' +
         '</div></article>';
     }
@@ -427,8 +454,10 @@
       return '<div class="projects-marquee-group"' + (hidden ? ' aria-hidden="true"' : '') + '>' +
         list.map(function (p, i) { return card(p, i, hidden); }).join('') + '</div>';
     };
-    return '<div class="projects-marquee" role="region" tabindex="0" aria-label="' + esc(copy.title || 'Nos réalisations') + '">' +
+    var marquee = '<div class="projects-marquee" role="region" tabindex="0" aria-label="' + esc(copy.title || 'Nos réalisations') + '">' +
       '<div class="projects-marquee-track">' + group(false) + group(true) + '</div></div>';
+    var adminForm = RENDERERS.projectAdmin ? RENDERERS.projectAdmin() : '';
+    return marquee + adminForm;
   };
 
   RENDERERS.topbarContact = function () {
@@ -792,6 +821,7 @@
 
   var PRODUCT_STORE = 'bgs-products-v1';
   var productState = { list: null, api: false };
+  var projectState = { list: null, api: false };
   var adminState = { ready: false, authenticated: false, username: null, setupRequired: false };
 
   function api(url, options) {
@@ -803,18 +833,21 @@
   }
 
   async function loadSiteState() {
-    var products = await api('/api/products');
-    if (products.ok && Array.isArray(products.products)) {
-      productState.list = products.products;
-      productState.api = true;
-    }
-    var status = await api('/api/admin/status');
+    var results = await Promise.all([api('/api/products'), api('/api/projects'), api('/api/admin/status')]);
+    var products = results[0], projects = results[1], status = results[2];
+    if (products.ok && Array.isArray(products.products)) { productState.list = products.products; productState.api = true; }
+    if (projects.ok && Array.isArray(projects.projects)) { projectState.list = projects.projects; projectState.api = true; }
     adminState.ready = true;
     if (status.ok) {
       adminState.authenticated = !!status.authenticated;
       adminState.username = status.username || null;
       adminState.setupRequired = !!status.setupRequired;
     }
+  }
+
+  function getProjects() {
+    if (projectState.list) return projectState.list.slice();
+    return (CFG.projects || []).slice();
   }
 
   function readProductStore() {
@@ -866,6 +899,7 @@
     });
     paintIcons(document);
     bindProductActions();
+    bindProjectActions();
 
     if (activeFilter !== 'all' || document.querySelector('[data-render="projectsGrid"]')) applyProjectFilter(activeFilter);
     if (activeProductCategory !== 'all' || document.querySelector('[data-render="productsGrid"]')) applyProductFilter(activeProductCategory);
@@ -937,6 +971,83 @@
     bindProductActions();
     updatePopupProduct();
     applyProductFilter('all');
+  }
+
+  function projectStatusMessage(msg) { var el = document.querySelector('[data-project-status]'); if (el) el.textContent = msg || ''; }
+  function refreshProjects() { renderDynamicContent(); }
+  function bindProjectActions() {
+    document.querySelectorAll('[data-project-delete]').forEach(function (btn) {
+      if (btn.dataset.bound) return; btn.dataset.bound = '1';
+      btn.addEventListener('click', async function () {
+        var copy = DICT[lang].projects.admin || {};
+        if (!window.confirm(copy.deleteConfirm || 'Supprimer cette réalisation ?')) return;
+        btn.disabled = true;
+        var result = await api('/api/projects/' + encodeURIComponent(btn.dataset.projectDelete), { method: 'DELETE' });
+        if (result.ok && Array.isArray(result.projects)) { projectState.list = result.projects; refreshProjects(); projectStatusMessage(copy.deleted || 'Réalisation supprimée.'); }
+        else { btn.disabled = false; projectStatusMessage(DICT[lang].admin.network); }
+      });
+    });
+    document.querySelectorAll('[data-project-edit]').forEach(function (btn) {
+      if (btn.dataset.bound) return; btn.dataset.bound = '1';
+      btn.addEventListener('click', function () {
+        var p = getProjects().filter(function (x) { return x.id === btn.dataset.projectEdit; })[0];
+        var form = document.getElementById('projectForm');
+        if (!p || !form) return;
+        var f = form.elements;
+        f.editingId.value = p.id;
+        f.nameFr.value = (p.name && p.name.fr) || '';
+        f.nameEn.value = (p.name && p.name.en) || '';
+        f.nameEs.value = (p.name && p.name.es) || '';
+        f.nameAr.value = (p.name && p.name.ar) || '';
+        f.description.value = (p.description && p.description.fr) || '';
+        f.descriptionEs.value = (p.description && p.description.es) || '';
+        f.image.value = '';
+        var submit = document.getElementById('projectSubmit'); var cancel = document.getElementById('projectCancelEdit');
+        var copy = DICT[lang].projects.admin || {};
+        if (submit) submit.textContent = copy.save || 'Enregistrer';
+        if (cancel) cancel.hidden = false;
+        form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        projectStatusMessage(copy.editing || 'Modification…');
+      });
+    });
+    var form = document.getElementById('projectForm');
+    if (form && !form.dataset.bound) {
+      form.dataset.bound = '1';
+      form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        var f = form.elements; var copy = DICT[lang].projects.admin || {};
+        var nameFr = (f.nameFr.value || '').trim();
+        if (!nameFr) { projectStatusMessage(copy.required || 'Nom requis.'); f.nameFr.focus(); return; }
+        var text = (f.description.value || '').trim();
+        var esText = (f.descriptionEs && f.descriptionEs.value || '').trim() || text;
+        var image = '';
+        if (f.image && f.image.files && f.image.files[0]) {
+          var file = f.image.files[0];
+          if (file.size > 2 * 1024 * 1024) { projectStatusMessage(copy.imageTooLarge || 'Image trop volumineuse (max 2 Mo).'); return; }
+          image = await new Promise(function (resolve) { var r = new FileReader(); r.onload = function () { resolve(String(r.result || '')); }; r.onerror = function () { resolve(''); }; r.readAsDataURL(file); });
+        }
+        var payload = { category: 'realisations', image: image, name: { fr: nameFr, en: (f.nameEn.value||'').trim()||nameFr, es: (f.nameEs.value||'').trim()||nameFr, ar: (f.nameAr.value||'').trim()||nameFr }, description: { fr: text, en: text, es: esText, ar: text }, tags: [] };
+        var editingId = (f.editingId.value || '').trim();
+        projectStatusMessage(DICT[lang].common.learnMore);
+        var result = await api(editingId ? '/api/projects/' + encodeURIComponent(editingId) : '/api/projects', { method: editingId ? 'PUT' : 'POST', body: JSON.stringify(payload) });
+        if (result.ok && Array.isArray(result.projects)) {
+          projectState.list = result.projects; form.reset(); f.editingId.value = '';
+          var submitBtn = document.getElementById('projectSubmit'); var cancelBtn = document.getElementById('projectCancelEdit');
+          if (submitBtn) submitBtn.textContent = copy.add || 'Ajouter'; if (cancelBtn) cancelBtn.hidden = true;
+          refreshProjects(); projectStatusMessage(editingId ? (copy.updated || 'Réalisation modifiée.') : (copy.success || 'Réalisation ajoutée.'));
+        } else { projectStatusMessage(DICT[lang].admin.network); }
+      });
+    }
+    var cancelEdit = document.getElementById('projectCancelEdit');
+    if (cancelEdit && !cancelEdit.dataset.bound) {
+      cancelEdit.dataset.bound = '1';
+      cancelEdit.addEventListener('click', function () {
+        var form = document.getElementById('projectForm'); if (!form) return;
+        form.reset(); form.elements.editingId.value = ''; cancelEdit.hidden = true;
+        var submitBtn = document.getElementById('projectSubmit'); var copy = DICT[lang].projects.admin || {};
+        if (submitBtn) submitBtn.textContent = copy.add || 'Ajouter'; projectStatusMessage('');
+      });
+    }
   }
 
   function bindProductActions() {
@@ -1136,19 +1247,27 @@
     }
     if (staticGrid) {
       if (cat === 'all') { staticGrid.hidden = true; staticGrid.innerHTML = ''; return; }
-      var list = (CFG.projects || []);
+      var list = getProjects();
       var copy = DICT[lang].projects;
       staticGrid.hidden = false;
       staticGrid.innerHTML = list.map(function (p, i) {
         if (p.category !== cat) return '';
-        var text = copy.items[i] || { name: p.id, description: '' };
+        var text = (p.name && typeof p.name === 'object') ? p : ((copy.items && copy.items[i]) ? copy.items[i] : { name: p.id, description: '' });
+        var name = localized(text.name) || p.id;
+        var desc = localized(text.description) || '';
+        var adminActions = adminState.authenticated
+          ? '<div class="product-admin-actions">' +
+              '<button type="button" class="product-edit" data-project-edit="' + esc(p.id) + '" title="' + esc((copy.admin && copy.admin.edit) || 'Modifier') + '"><span data-icon="pencil"></span></button>' +
+              '<button type="button" class="product-delete" data-project-delete="' + esc(p.id) + '" title="' + esc((copy.admin && copy.admin.delete) || 'Supprimer') + '"><span data-icon="close"></span></button>' +
+            '</div>' : '';
         return '<article class="project-card reveal" data-category="' + esc(p.category) + '">' +
-          '<div class="project-media"><img src="' + esc(p.image) + '" alt="' + esc(text.name) + '" loading="lazy" decoding="async">' +
+          '<div class="project-media"><img src="' + esc(p.image) + '" alt="' + esc(name) + '" loading="lazy" decoding="async">' + adminActions +
             '<span class="project-tag">' + esc(copy.filters[p.category] || p.category) + '</span></div>' +
-          '<div class="project-body"><h3>' + esc(text.name) + '</h3><p>' + esc(text.description) + '</p></div></article>';
+          '<div class="project-body"><h3>' + esc(name) + '</h3><p>' + esc(desc) + '</p></div></article>';
       }).join('');
       observeReveals();
       paintIcons(staticGrid);
+      bindProjectActions();
     }
   }
 

@@ -498,6 +498,7 @@
         lead: 'Photographies de travaux déjà réalisés par BGS. Les intitulés et les détails de chaque mission peuvent être précisés à tout moment.',
         note: 'Galerie de photographies de réalisations BGS.',
         filters: { all: 'Toutes', realisations: 'Photos des réalisations' },
+        admin: { eyebrow: 'Administration', title: 'Gérer les réalisations', note: 'Ajoutez, modifiez ou supprimez des réalisations. Les changements sont visibles par tous les visiteurs.', name: 'Nom (FR)', nameEn: 'Nom (EN)', nameEs: 'Nom (ES)', nameAr: 'Nom (AR)', description: 'Description (FR)', descriptionEs: 'Description (ES)', image: 'Photo de la réalisation', imageHint: 'JPG, PNG, WebP ou GIF. Max 2 Mo.', imageTooLarge: 'Image trop volumineuse (max 2 Mo).', add: 'Ajouter la réalisation', save: 'Enregistrer les modifications', cancel: 'Annuler', edit: 'Modifier', delete: 'Supprimer', editing: 'Modification en cours…', updated: 'Réalisation modifiée.', success: 'Réalisation ajoutée.', deleted: 'Réalisation supprimée.', required: 'Le nom est obligatoire.', deleteConfirm: 'Supprimer cette réalisation ?' },
         items: [
           { name: 'Réalisation BGS — 01', description: 'Photographie d’une intervention réalisée par BGS.' },
           { name: 'Réalisation BGS — 02', description: 'Photographie d’une intervention réalisée par BGS.' },
@@ -1081,6 +1082,7 @@
         lead: 'Photographs of work already carried out by BGS. Titles and details of each assignment can be added at any time.',
         note: 'Photo gallery of BGS projects.',
         filters: { all: 'All', realisations: 'Project photos' },
+        admin: { eyebrow: 'Administration', title: 'Manage projects', note: 'Add, edit, or delete project photos. Changes are visible to all visitors.', name: 'Name (FR)', nameEn: 'Name (EN)', nameEs: 'Name (ES)', nameAr: 'Name (AR)', description: 'Description (FR)', descriptionEs: 'Description (ES)', image: 'Project photo', imageHint: 'JPG, PNG, WebP or GIF. Max 2 MB.', imageTooLarge: 'Image too large (max 2 MB).', add: 'Add project', save: 'Save changes', cancel: 'Cancel', edit: 'Edit', delete: 'Delete', editing: 'Editing…', updated: 'Project updated.', success: 'Project added.', deleted: 'Project deleted.', required: 'Name is required.', deleteConfirm: 'Delete this project?' },
         items: [
           { name: 'BGS project — 01', description: 'Photograph of work carried out by BGS.' },
           { name: 'BGS project — 02', description: 'Photograph of work carried out by BGS.' },
@@ -1664,6 +1666,7 @@
         lead: 'صور لأعمال نفذتها BGS بالفعل. يمكن إضافة عناوين كل مهمة وتفاصيلها في أي وقت.',
         note: 'معرض صور لمشاريع BGS المنفذة.',
         filters: { all: 'الكل', realisations: 'صور المشاريع' },
+        admin: { eyebrow: 'الإدارة', title: 'إدارة الإنجازات', note: 'أضف أو عدّل أو احذف صور الإنجازات. التغييرات مرئية لجميع الزوار.', name: 'الاسم (FR)', nameEn: 'الاسم (EN)', nameEs: 'الاسم (ES)', nameAr: 'الاسم (AR)', description: 'الوصف (FR)', descriptionEs: 'الوصف (ES)', image: 'صورة الإنجاز', imageHint: 'JPG أو PNG أو WebP أو GIF. بحد أقصى 2 ميغابايت.', imageTooLarge: 'الصورة كبيرة جدًا (2 ميغابايت كحد أقصى).', add: 'إضافة إنجاز', save: 'حفظ التعديلات', cancel: 'إلغاء', edit: 'تعديل', delete: 'حذف', editing: 'جارٍ التعديل…', updated: 'تم تعديل الإنجاز.', success: 'تمت إضافة الإنجاز.', deleted: 'تم حذف الإنجاز.', required: 'الاسم مطلوب.', deleteConfirm: 'هل تريد حذف هذا الإنجاز؟' },
         items: [
           { name: 'مشروع BGS — 01', description: 'صورة لمهمة نفذتها BGS.' },
           { name: 'مشروع BGS — 02', description: 'صورة لمهمة نفذتها BGS.' },
@@ -2702,7 +2705,7 @@
         "note": "Galería de fotografías de logros de BGS.",
         "filters": {
           "all": "Todas",
-          "realisations": "Fotos de los logros"
+          "realisations": "Fotos de los logros" }, "admin": { "eyebrow": "Administración", "title": "Gestionar realizaciones", "note": "Añada, edite o elimine fotos de realizaciones. Los cambios son visibles para todos.", "name": "Nombre (FR)", "nameEn": "Nombre (EN)", "nameEs": "Nombre (ES)", "nameAr": "Nombre (AR)", "description": "Descripción (FR)", "descriptionEs": "Descripción (ES)", "image": "Foto de la realización", "imageHint": "JPG, PNG, WebP o GIF. Máx. 2 MB.", "imageTooLarge": "Imagen demasiado grande (máx. 2 MB).", "add": "Añadir realización", "save": "Guardar cambios", "cancel": "Cancelar", "edit": "Editar", "delete": "Eliminar", "editing": "Editando…", "updated": "Realización actualizada.", "success": "Realización añadida.", "deleted": "Realización eliminada.", "required": "El nombre es obligatorio.", "deleteConfirm": "¿Eliminar esta realización?"
         },
         "items": [
           { "name": "Logro BGS — 01", "description": "Fotografía de una misión realizada por BGS." },
