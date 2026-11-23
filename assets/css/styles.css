@@ -816,9 +816,13 @@ p { margin: 0; }
 .audience-pill .icon { width: 18px; height: 18px; }
 .itsupport-hero-line { font-size: 1.35rem; font-weight: 800; color: var(--navy); text-align: center; margin-block: 12px 34px; }
 
-.product-delete { position: absolute; inset-block-start: 12px; inset-inline-start: 12px; width: 30px; height: 30px; display: grid; place-items: center; border: 0; border-radius: 50%; background: rgba(255,255,255,.94); color: var(--danger); cursor: pointer; box-shadow: 0 2px 8px rgba(7,27,58,.15); transition: transform .2s, background .2s; }
+.product-admin-actions { position: absolute; inset-block-start: 12px; inset-inline-start: 12px; display: flex; gap: 8px; z-index: 2; }
+.product-edit, .product-delete { width: 32px; height: 32px; display: grid; place-items: center; border: 0; border-radius: 50%; background: rgba(255,255,255,.94); cursor: pointer; box-shadow: 0 2px 8px rgba(7,27,58,.15); transition: transform .2s, background .2s; }
+.product-edit { color: var(--blue); }
+.product-delete { color: var(--danger); }
+.product-edit:hover { transform: scale(1.08); background: #EAF4FF; }
 .product-delete:hover { transform: scale(1.08); background: #FFECEC; }
-.product-delete .icon { width: 14px; height: 14px; }
+.product-edit .icon, .product-delete .icon { width: 14px; height: 14px; }
 .product-card .product-body { position: relative; }
 .product-admin { max-width: 980px; margin-inline: auto; background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); padding: clamp(22px, 4vw, 42px); box-shadow: var(--shadow-sm); }
 .product-form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-block-start: 28px; }

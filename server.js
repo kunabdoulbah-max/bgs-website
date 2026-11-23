@@ -706,6 +706,38 @@ async function handleProductDelete(req, res, id) {
   }
 }
 
+async function handleProductUpdate(req, res, id) {
+  if (!requireAdmin(req, res)) return;
+  let payload;
+  try { payload = await readJsonBody(req, MAX_PRODUCT_BODY); } catch (e) { return json(res, 400, { ok: false, error: e && e.message === 'Body too large' ? 'image-too-large' : 'invalid-body' }); }
+  const list = await loadProducts();
+  const index = list.findIndex((p) => p.id === id);
+  if (index < 0) return json(res, 404, { ok: false, error: 'not-found' });
+  const rawName = payload.name && typeof payload.name === 'object' ? payload.name : { fr: payload.name };
+  const rawDescription = payload.description && typeof payload.description === 'object' ? payload.description : { fr: payload.description };
+  const frName = clean(rawName.fr, 140);
+  if (!frName) return json(res, 400, { ok: false, error: 'name-required' });
+  const existing = list[index];
+  const image = payload.image ? normalizeProductImage(payload.image) : (existing.image || '');
+  const updated = normalizeProduct({
+    id: existing.id,
+    category: payload.category,
+    ref: payload.ref,
+    stock: payload.stock,
+    image,
+    name: rawName,
+    description: rawDescription
+  }, existing.id);
+  list[index] = updated;
+  try {
+    await saveProducts(list);
+    return json(res, 200, { ok: true, product: updated, products: list });
+  } catch (err) {
+    console.error('[BGS] Mise à jour produit:', err);
+    return json(res, 500, { ok: false, error: 'server-error' });
+  }
+}
+
 async function handleProductReset(req, res) {
   if (!requireAdmin(req, res)) return;
   const list = defaultProducts();
@@ -767,10 +799,11 @@ async function handleApi(req, res, url) {
   }
   const productMatch = p.match(/^\/api\/products\/([^/]+)$/);
   if (productMatch) {
-    if (req.method !== 'DELETE') return json(res, 405, { ok: false, error: 'method-not-allowed' });
     let id;
     try { id = decodeURIComponent(productMatch[1]); } catch { return json(res, 400, { ok: false, error: 'invalid-id' }); }
-    return await handleProductDelete(req, res, id);
+    if (req.method === 'DELETE') return await handleProductDelete(req, res, id);
+    if (req.method === 'PUT') { handleProductUpdate(req, res, id).catch(() => json(res, 500, { ok: false, error: 'server-error' })); return; }
+    return json(res, 405, { ok: false, error: 'method-not-allowed' });
   }
 
   return json(res, 404, { ok: false, error: 'not-found' });

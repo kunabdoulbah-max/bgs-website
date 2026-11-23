@@ -463,15 +463,21 @@
       var status = copy.stock[p.stock] || copy.stock.available;
       var cls = p.stock === 'out' ? 'out' : (p.stock === 'low' ? 'low' : 'available');
       var img = p.image ? '<img src="' + esc(p.image) + '" alt="' + esc(localized(p.name)) + '" loading="lazy" decoding="async">' : '<span data-icon="' + (icons[p.category] || 'layers') + '"></span>';
+      var adminActions = adminState.authenticated
+        ? '<div class="product-admin-actions">' +
+            '<button type="button" class="product-edit" data-product-edit="' + esc(p.id) + '" title="' + esc(copy.admin.edit || 'Modifier') + '" aria-label="' + esc(copy.admin.edit || 'Modifier') + '"><span data-icon="pencil"></span></button>' +
+            '<button type="button" class="product-delete" data-product-delete="' + esc(p.id) + '" title="' + esc(copy.admin.delete) + '" aria-label="' + esc(copy.admin.delete) + '"><span data-icon="close"></span></button>' +
+          '</div>'
+        : '';
       return '<article class="product-card reveal" data-product-category="' + esc(p.category) + '" style="transition-delay:' + ((i % 4) * 60) + 'ms">' +
         '<div class="product-media">' + img +
+          adminActions +
           '<span class="stock-badge ' + cls + '"><span class="dot"></span>' + esc(status) + '</span></div>' +
         '<div class="product-body">' +
           '<span class="product-category">' + esc(copy.categories[p.category] || p.category) + '</span>' +
           '<h3>' + esc(localized(p.name)) + '</h3>' +
           '<p>' + esc(localized(p.description)) + '</p>' +
           '<div class="product-ref">' + esc(copy.ref) + ' : <strong>' + esc(localized(p.ref, 'common.toConfigure')) + '</strong></div>' +
-          (adminState.authenticated ? '<button type="button" class="product-delete" data-product-delete="' + esc(p.id) + '" title="' + esc(copy.admin.delete) + '" aria-label="' + esc(copy.admin.delete) + '"><span data-icon="close"></span></button>' : '') +
           '<a class="text-link" href="contact.html?devis=1&produit=' + encodeURIComponent(p.id) + '">' + esc(t('common.requestQuote')) + '<span data-icon="arrow"></span></a>' +
         '</div></article>';
     }).join('');
@@ -523,6 +529,7 @@
       '<div class="admin-session"><span data-icon="lock"></span><span>' + esc(DICT[lang].admin.loggedIn) + ' : <strong>' + esc(adminState.username || '') + '</strong></span>' +
         '<button type="button" id="adminLogout" class="btn btn-sm btn-outline-dark">' + esc(a.logout) + '</button></div>' +
       '<form id="productForm" class="product-form" novalidate>' +
+        '<input type="hidden" name="editingId">' +
         '<label>' + esc(a.name) + '<input type="text" name="nameFr" required maxlength="120"></label>' +
         '<label>' + esc(a.nameEn) + '<input type="text" name="nameEn" maxlength="120"></label>' +
         '<label>' + esc(a.nameEs) + '<input type="text" name="nameEs" maxlength="120"></label>' +
@@ -533,7 +540,8 @@
         '<label>' + esc(a.ref) + '<input type="text" name="ref" maxlength="80"></label>' +
         '<label>' + esc(a.stock) + '<select name="stock">' + stockOptions + '</select></label>' +
         '<label>' + esc(a.image || 'Image du produit') + '<input type="file" name="image" accept="image/png,image/jpeg,image/webp,image/gif"><small>' + esc(a.imageHint || 'JPG, PNG, WebP ou GIF. Max 2 Mo.') + '</small></label>' +
-        '<div class="product-form-actions"><button type="submit" class="btn btn-primary">' + esc(a.add) + '</button>' +
+        '<div class="product-form-actions"><button type="submit" class="btn btn-primary" id="productSubmit">' + esc(a.add) + '</button>' +
+          '<button type="button" class="btn btn-outline-dark" id="productCancelEdit" hidden>' + esc(a.cancel || 'Annuler') + '</button>' +
           '<button type="button" class="btn btn-outline-dark" id="productReset">' + esc(a.reset) + '</button></div>' +
         '<p class="product-status" data-product-status role="status" aria-live="polite"></p>' +
       '</form></div>';
@@ -936,6 +944,7 @@
       btn.dataset.bound = '1';
       btn.addEventListener('click', async function () {
         var id = btn.dataset.productDelete;
+        if (!window.confirm(DICT[lang].products.admin.deleteConfirm || 'Supprimer ce produit ?')) return;
         btn.disabled = true;
         var result = await api('/api/products/' + encodeURIComponent(id), { method: 'DELETE' });
         if (result.ok && Array.isArray(result.products)) {
@@ -946,6 +955,35 @@
           btn.disabled = false;
           productStatusMessage(DICT[lang].admin.network);
         }
+      });
+    });
+
+    document.querySelectorAll('[data-product-edit]').forEach(function (btn) {
+      if (btn.dataset.bound) return;
+      btn.dataset.bound = '1';
+      btn.addEventListener('click', function () {
+        var id = btn.dataset.productEdit;
+        var p = getProducts().filter(function (x) { return x.id === id; })[0];
+        var form = document.getElementById('productForm');
+        if (!p || !form) return;
+        var f = form.elements;
+        f.editingId.value = p.id;
+        f.nameFr.value = (p.name && p.name.fr) || '';
+        f.nameEn.value = (p.name && p.name.en) || '';
+        f.nameEs.value = (p.name && p.name.es) || '';
+        f.nameAr.value = (p.name && p.name.ar) || '';
+        f.description.value = (p.description && p.description.fr) || '';
+        f.descriptionEs.value = (p.description && p.description.es) || '';
+        f.category.value = p.category || 'informatique';
+        f.ref.value = p.ref || '';
+        f.stock.value = p.stock || 'available';
+        f.image.value = '';
+        var submit = document.getElementById('productSubmit');
+        var cancel = document.getElementById('productCancelEdit');
+        if (submit) submit.textContent = DICT[lang].products.admin.save || 'Enregistrer';
+        if (cancel) cancel.hidden = false;
+        form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        productStatusMessage(DICT[lang].products.admin.editing || 'Modification du produit...');
       });
     });
 
@@ -990,13 +1028,21 @@
           },
           description: { fr: text, en: text, es: esText, ar: text }
         };
+        var editingId = (f.editingId && f.editingId.value || '').trim();
         productStatusMessage(DICT[lang].common.learnMore);
-        var result = await api('/api/products', { method: 'POST', body: JSON.stringify(payload) });
+        var url = editingId ? '/api/products/' + encodeURIComponent(editingId) : '/api/products';
+        var method = editingId ? 'PUT' : 'POST';
+        var result = await api(url, { method: method, body: JSON.stringify(payload) });
         if (result.ok && Array.isArray(result.products)) {
           productState.list = result.products;
           form.reset();
+          if (f.editingId) f.editingId.value = '';
+          var submitBtn = document.getElementById('productSubmit');
+          var cancelBtn = document.getElementById('productCancelEdit');
+          if (submitBtn) submitBtn.textContent = DICT[lang].products.admin.add;
+          if (cancelBtn) cancelBtn.hidden = true;
           refreshProducts();
-          productStatusMessage(DICT[lang].products.admin.success);
+          productStatusMessage(editingId ? (DICT[lang].products.admin.updated || 'Produit modifié.') : DICT[lang].products.admin.success);
         } else {
           productStatusMessage(DICT[lang].admin.network);
         }
@@ -1007,6 +1053,7 @@
     if (reset && !reset.dataset.bound) {
       reset.dataset.bound = '1';
       reset.addEventListener('click', async function () {
+        if (!window.confirm(DICT[lang].products.admin.resetConfirm || 'Réinitialiser le catalogue ?')) return;
         var result = await api('/api/products/reset', { method: 'POST' });
         if (result.ok && Array.isArray(result.products)) {
           productState.list = result.products;
@@ -1015,6 +1062,21 @@
         } else {
           productStatusMessage(DICT[lang].admin.network);
         }
+      });
+    }
+
+    var cancelEdit = document.getElementById('productCancelEdit');
+    if (cancelEdit && !cancelEdit.dataset.bound) {
+      cancelEdit.dataset.bound = '1';
+      cancelEdit.addEventListener('click', function () {
+        var form = document.getElementById('productForm');
+        if (!form) return;
+        form.reset();
+        if (form.elements.editingId) form.elements.editingId.value = '';
+        var submitBtn = document.getElementById('productSubmit');
+        cancelEdit.hidden = true;
+        if (submitBtn) submitBtn.textContent = DICT[lang].products.admin.add;
+        productStatusMessage('');
       });
     }
 
