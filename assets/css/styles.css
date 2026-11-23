@@ -917,6 +917,11 @@ p { margin: 0; }
 .footer-social a:hover { background: var(--electric); color: #fff; transform: translateY(-3px); }
 .footer-wa { display: inline-flex; align-items: center; gap: 9px; margin-block-start: 18px; background: rgba(37,211,102,.13); color: #6DE69B; border: 1px solid rgba(37,211,102,.3); border-radius: 9px; padding: 10px 14px; font-weight: 700; font-size: .84rem; }
 .footer-wa:hover { background: var(--whatsapp); color: #fff; }
+.site-footer .info-row { border-block-end-color: rgba(255,255,255,.1); padding-block: 10px; gap: 12px; }
+.site-footer .info-icon { background: rgba(22,139,255,.14); color: #7EC2FF; width: 36px; height: 36px; }
+.site-footer .info-row strong, .site-footer .info-row a { color: #EAF4FF; font-size: .86rem; overflow-wrap: anywhere; }
+.site-footer .info-row span { color: #9AB3CC; }
+.site-footer .info-row a:hover { color: #fff; }
 .footer-bottom { margin-block-start: 58px; border-block-start: 1px solid rgba(255,255,255,.1); padding-block: 22px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; font-size: .8rem; position: relative; }
 .footer-bottom-links { display: flex; flex-wrap: wrap; gap: 20px; }
 .footer-bottom a:hover { color: var(--electric-soft); }
