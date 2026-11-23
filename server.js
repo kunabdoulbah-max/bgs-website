@@ -567,12 +567,33 @@ function defaultProducts() {
   return [];
 }
 
+function mergeDefaultProducts(list) {
+  const defaults = defaultProducts();
+  if (!defaults.length || !Array.isArray(list) || !list.length) return { list, changed: false };
+  const byId = new Map(defaults.map((p) => [p.id, p]));
+  let changed = false;
+  const next = list.map((p) => {
+    const d = byId.get(p.id);
+    if (!d) return p;
+    // Mise à jour douce des anciens produits par défaut sans écraser les ajouts admin.
+    const looksDefault = !p.image || p.ref === 'À renseigner' || p.stock === 'out' || p.stock === 'low';
+    if (!looksDefault) return p;
+    changed = true;
+    return normalizeProduct(Object.assign({}, p, d, { id: p.id }), p.id);
+  });
+  return { list: next, changed };
+}
+
 async function loadProducts() {
   if (pool) {
     const { rows } = await pool.query(
       'SELECT id, category, ref, stock, name, description, image FROM bgs_products ORDER BY position ASC'
     );
-    if (rows.length) return rows.map((p) => normalizeProduct(p));
+    if (rows.length) {
+      const merged = mergeDefaultProducts(rows.map((p) => normalizeProduct(p)));
+      if (merged.changed) await saveProducts(merged.list);
+      return merged.list;
+    }
     const initial = defaultProducts();
     await saveProducts(initial);
     return initial;
@@ -580,7 +601,11 @@ async function loadProducts() {
   if (fs.existsSync(PRODUCTS_FILE)) {
     try {
       const list = JSON.parse(fs.readFileSync(PRODUCTS_FILE, 'utf8'));
-      if (Array.isArray(list)) return list.map((p) => normalizeProduct(p));
+      if (Array.isArray(list)) {
+        const merged = mergeDefaultProducts(list.map((p) => normalizeProduct(p)));
+        if (merged.changed) await saveProducts(merged.list);
+        return merged.list;
+      }
     } catch (err) {
       console.warn('[BGS] Catalogue illisible, réinitialisation:', err.message);
     }
