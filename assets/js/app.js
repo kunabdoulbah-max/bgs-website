@@ -408,15 +408,22 @@
   RENDERERS.projectsGrid = function () {
     var list = (CFG.projects || []);
     var copy = DICT[lang].projects;
-    return list.map(function (p, i) {
+    function card(p, i, hidden) {
       var text = copy.items[i] || { name: p.id, description: '' };
-      return '<article class="project-card reveal" data-category="' + esc(p.category) + '" style="transition-delay:' + ((i % 3) * 65) + 'ms">' +
-        '<div class="project-media"><img src="' + esc(p.image) + '" alt="' + esc(text.name) + '" loading="lazy" decoding="async">' +
+      var alt = hidden ? '' : esc(text.name);
+      return '<article class="project-card project-slide"' + (hidden ? ' aria-hidden="true"' : '') + ' data-category="' + esc(p.category) + '">' +
+        '<div class="project-media"><img src="' + esc(p.image) + '" alt="' + alt + '" loading="lazy" decoding="async">' +
           '<span class="project-tag">' + esc(copy.filters[p.category] || p.category) + '</span></div>' +
         '<div class="project-body"><h3>' + esc(text.name) + '</h3><p>' + esc(text.description) + '</p>' +
           '<div class="project-tech">' + (p.tags || []).map(function (tag) { return '<span>' + esc(tag) + '</span>'; }).join('') + '</div>' +
         '</div></article>';
-    }).join('');
+    }
+    var group = function (hidden) {
+      return '<div class="projects-marquee-group"' + (hidden ? ' aria-hidden="true"' : '') + '>' +
+        list.map(function (p, i) { return card(p, i, hidden); }).join('') + '</div>';
+    };
+    return '<div class="projects-marquee" role="region" tabindex="0" aria-label="' + esc(copy.title || 'Nos réalisations') + '">' +
+      '<div class="projects-marquee-track">' + group(false) + group(true) + '</div></div>';
   };
 
   RENDERERS.topbarContact = function () {
@@ -1049,9 +1056,32 @@
       b.classList.toggle('is-active', on);
       b.setAttribute('aria-pressed', String(on));
     });
-    document.querySelectorAll('.project-card').forEach(function (card) {
-      card.hidden = !(cat === 'all' || card.dataset.category === cat);
-    });
+    var marquee = document.querySelector('.projects-marquee');
+    var grid = document.querySelector('[data-render="projectsGrid"]');
+    if (marquee) marquee.hidden = cat !== 'all';
+    var staticGrid = document.getElementById('projectsStaticGrid');
+    if (!staticGrid && grid) {
+      staticGrid = document.createElement('div');
+      staticGrid.id = 'projectsStaticGrid';
+      staticGrid.className = 'projects-grid-static';
+      grid.appendChild(staticGrid);
+    }
+    if (staticGrid) {
+      if (cat === 'all') { staticGrid.hidden = true; staticGrid.innerHTML = ''; return; }
+      var list = (CFG.projects || []);
+      var copy = DICT[lang].projects;
+      staticGrid.hidden = false;
+      staticGrid.innerHTML = list.map(function (p, i) {
+        if (p.category !== cat) return '';
+        var text = copy.items[i] || { name: p.id, description: '' };
+        return '<article class="project-card reveal" data-category="' + esc(p.category) + '">' +
+          '<div class="project-media"><img src="' + esc(p.image) + '" alt="' + esc(text.name) + '" loading="lazy" decoding="async">' +
+            '<span class="project-tag">' + esc(copy.filters[p.category] || p.category) + '</span></div>' +
+          '<div class="project-body"><h3>' + esc(text.name) + '</h3><p>' + esc(text.description) + '</p></div></article>';
+      }).join('');
+      observeReveals();
+      paintIcons(staticGrid);
+    }
   }
 
   /* --------------------------- Config & WhatsApp ---------------------------- */
