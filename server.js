@@ -363,6 +363,14 @@ async function writeAdmin(admin) {
   fs.writeFileSync(ADMIN_FILE, JSON.stringify(admin, null, 2) + '\n', { mode: 0o600 });
 }
 
+async function deleteAdmin() {
+  if (pool) {
+    await pool.query('DELETE FROM bgs_admin WHERE id = 1');
+    return;
+  }
+  if (fs.existsSync(ADMIN_FILE)) fs.unlinkSync(ADMIN_FILE);
+}
+
 function hashPassword(password, salt) {
   return crypto.scryptSync(String(password), salt, 64).toString('hex');
 }
@@ -480,6 +488,27 @@ function handleAdminLogout(req, res) {
   const token = parseCookies(req)[COOKIE_NAME];
   if (token) sessions.delete(token);
   return json(res, 200, { ok: true, authenticated: false }, { 'Set-Cookie': clearSessionCookie() });
+}
+
+async function handleAdminReset(req, res) {
+  const expected = String(process.env.ADMIN_RESET_TOKEN || '').trim();
+  if (!expected) return json(res, 404, { ok: false, error: 'not-found' });
+
+  let payload;
+  try { payload = await readJsonBody(req); } catch { return json(res, 400, { ok: false, error: 'invalid-body' }); }
+  const token = String(payload.token || '');
+  if (!token || token.length !== expected.length) return json(res, 401, { ok: false, error: 'unauthorized' });
+  try {
+    const ok = crypto.timingSafeEqual(Buffer.from(token), Buffer.from(expected));
+    if (!ok) return json(res, 401, { ok: false, error: 'unauthorized' });
+  } catch {
+    return json(res, 401, { ok: false, error: 'unauthorized' });
+  }
+
+  await deleteAdmin();
+  for (const key of sessions.keys()) sessions.delete(key);
+  console.warn('[BGS] Compte administrateur réinitialisé via ADMIN_RESET_TOKEN.');
+  return json(res, 200, { ok: true, setupRequired: true }, { 'Set-Cookie': clearSessionCookie() });
 }
 
 /* -------------------------------- Catalogue -------------------------------- */
@@ -676,6 +705,10 @@ async function handleApi(req, res, url) {
   if (p === '/api/admin/status') {
     if (req.method !== 'GET') return json(res, 405, { ok: false, error: 'method-not-allowed' });
     return await handleAdminStatus(req, res);
+  }
+  if (p === '/api/admin/reset') {
+    if (req.method !== 'POST') return json(res, 405, { ok: false, error: 'method-not-allowed' });
+    return await handleAdminReset(req, res);
   }
   if (p === '/api/admin/setup') {
     if (req.method !== 'POST') return json(res, 405, { ok: false, error: 'method-not-allowed' });
