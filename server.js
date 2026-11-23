@@ -44,6 +44,7 @@ const PORT = Number(process.env.PORT) || 3000;
 const HOST = process.env.HOST || '0.0.0.0';
 
 const MAX_BODY = 12 * 1024; // 12 Ko
+const MAX_PRODUCT_BODY = 3 * 1024 * 1024; // 3 Mo pour upload image produit (base64)
 const RATE_WINDOW = 60 * 60 * 1000; // 1 heure
 const RATE_MAX = 5;
 const MIN_FILL_TIME = 1500;
@@ -143,13 +144,14 @@ function serveStatic(req, res, pathname) {
   fs.createReadStream(full).pipe(res);
 }
 
-function readBody(req) {
+function readBody(req, maxBytes) {
+  const limit = Number(maxBytes) > 0 ? Number(maxBytes) : MAX_BODY;
   return new Promise((resolve, reject) => {
     let size = 0;
     const chunks = [];
     req.on('data', (chunk) => {
       size += chunk.length;
-      if (size > MAX_BODY) { reject(new Error('Body too large')); req.destroy(); return; }
+      if (size > limit) { reject(new Error('Body too large')); req.destroy(); return; }
       chunks.push(chunk);
     });
     req.on('end', () => resolve(Buffer.concat(chunks).toString('utf8')));
@@ -157,8 +159,8 @@ function readBody(req) {
   });
 }
 
-async function readJsonBody(req) {
-  const raw = await readBody(req);
+async function readJsonBody(req, maxBytes) {
+  const raw = await readBody(req, maxBytes);
   const payload = JSON.parse(raw || '{}');
   if (!payload || typeof payload !== 'object' || Array.isArray(payload)) throw new Error('invalid-body');
   return payload;
@@ -232,8 +234,10 @@ async function initStore() {
       stock text NOT NULL,
       name jsonb NOT NULL,
       description jsonb NOT NULL,
+      image text NOT NULL DEFAULT '',
       position integer NOT NULL DEFAULT 0
     );
+    ALTER TABLE bgs_products ADD COLUMN IF NOT EXISTS image text NOT NULL DEFAULT '';
     CREATE TABLE IF NOT EXISTS bgs_leads (
       id text PRIMARY KEY,
       received_at timestamptz NOT NULL,
@@ -480,6 +484,19 @@ function handleAdminLogout(req, res) {
 
 /* -------------------------------- Catalogue -------------------------------- */
 
+function normalizeProductImage(value) {
+  const raw = String(value || '').trim();
+  if (!raw) return '';
+  if (/^assets\/img\/products\/[a-z0-9._-]+\.(png|jpe?g|webp|gif)$/i.test(raw)) return raw;
+  const m = raw.match(/^data:image\/(png|jpeg|jpg|webp|gif);base64,([A-Za-z0-9+/=]+)$/i);
+  if (!m) return '';
+  const mime = m[1].toLowerCase() === 'jpg' ? 'jpeg' : m[1].toLowerCase();
+  const b64 = m[2];
+  // ~2 Mo max en base64
+  if (b64.length > 2 * 1024 * 1024 * 1.37) return '';
+  return 'data:image/' + mime + ';base64,' + b64;
+}
+
 function normalizeProduct(raw, forcedId) {
   const source = raw && typeof raw === 'object' ? raw : {};
   const name = source.name && typeof source.name === 'object' ? source.name : {};
@@ -492,6 +509,7 @@ function normalizeProduct(raw, forcedId) {
     category: CATEGORIES.includes(source.category) ? source.category : 'informatique',
     ref: clean(source.ref, 100) || 'À renseigner',
     stock: STOCKS.includes(source.stock) ? source.stock : 'available',
+    image: normalizeProductImage(source.image),
     name: {
       fr: frName,
       en: clean(name.en, 140) || frName,
@@ -523,7 +541,7 @@ function defaultProducts() {
 async function loadProducts() {
   if (pool) {
     const { rows } = await pool.query(
-      'SELECT id, category, ref, stock, name, description FROM bgs_products ORDER BY position ASC'
+      'SELECT id, category, ref, stock, name, description, image FROM bgs_products ORDER BY position ASC'
     );
     if (rows.length) return rows.map((p) => normalizeProduct(p));
     const initial = defaultProducts();
@@ -552,9 +570,9 @@ async function saveProducts(list) {
       for (let i = 0; i < list.length; i++) {
         const p = list[i];
         await client.query(
-          `INSERT INTO bgs_products (id, category, ref, stock, name, description, position)
-           VALUES ($1, $2, $3, $4, $5::jsonb, $6::jsonb, $7)`,
-          [p.id, p.category, p.ref, p.stock, JSON.stringify(p.name), JSON.stringify(p.description), i]
+          `INSERT INTO bgs_products (id, category, ref, stock, name, description, image, position)
+           VALUES ($1, $2, $3, $4, $5::jsonb, $6::jsonb, $7, $8)`,
+          [p.id, p.category, p.ref, p.stock, JSON.stringify(p.name), JSON.stringify(p.description), p.image || '', i]
         );
       }
       await client.query('COMMIT');
@@ -596,6 +614,7 @@ function validateProduct(payload) {
       category: payload.category,
       ref: payload.ref,
       stock: payload.stock,
+      image: payload.image,
       name: rawName,
       description: rawDescription
     }, id)
@@ -605,7 +624,7 @@ function validateProduct(payload) {
 async function handleProductCreate(req, res) {
   if (!requireAdmin(req, res)) return;
   let payload;
-  try { payload = await readJsonBody(req); } catch { return json(res, 400, { ok: false, error: 'invalid-body' }); }
+  try { payload = await readJsonBody(req, MAX_PRODUCT_BODY); } catch (e) { return json(res, 400, { ok: false, error: e && e.message === 'Body too large' ? 'image-too-large' : 'invalid-body' }); }
   const result = validateProduct(payload);
   if (result.error) return json(res, 400, { ok: false, error: result.error });
   const list = await loadProducts();

@@ -520,6 +520,7 @@
         '<label>' + esc(a.category) + '<select name="category">' + catOptions + '</select></label>' +
         '<label>' + esc(a.ref) + '<input type="text" name="ref" maxlength="80"></label>' +
         '<label>' + esc(a.stock) + '<select name="stock">' + stockOptions + '</select></label>' +
+        '<label>' + esc(a.image || 'Image du produit') + '<input type="file" name="image" accept="image/png,image/jpeg,image/webp,image/gif"><small>' + esc(a.imageHint || 'JPG, PNG, WebP ou GIF. Max 2 Mo.') + '</small></label>' +
         '<div class="product-form-actions"><button type="submit" class="btn btn-primary">' + esc(a.add) + '</button>' +
           '<button type="button" class="btn btn-outline-dark" id="productReset">' + esc(a.reset) + '</button></div>' +
         '<p class="product-status" data-product-status role="status" aria-live="polite"></p>' +
@@ -556,7 +557,10 @@
     var copy = DICT[lang].productWeek;
     var status = (DICT[lang].products.stock || {})[p.stock] || '';
     var href = 'contact.html?devis=1&produit=' + encodeURIComponent(p.id);
+    var img = p.image ? '<img class="pop-product-image" src="' + esc(p.image) + '" alt="' + esc(localized(p.name)) + '" loading="lazy" decoding="async">' : '';
     return '<div class="pop-product">' +
+      img +
+      '<div class="pop-product-body">' +
       '<h3>' + esc(localized(p.name)) + '</h3>' +
       '<p>' + esc(localized(p.description)) + '</p>' +
       '<div class="pop-meta">' +
@@ -564,7 +568,7 @@
         '<span>' + esc(copy.stock) + ' : <strong>' + esc(status) + '</strong></span>' +
       '</div>' +
       '<a class="btn btn-primary" href="' + href + '">' + esc(t('common.requestQuote')) + '<span data-icon="arrow"></span></a>' +
-      '</div>';
+      '</div></div>';
   };
 
   RENDERERS.productWeekPopup = function (isOpen) {
@@ -947,10 +951,25 @@
         }
         var text = (f.description.value || '').trim();
         var esText = (f.descriptionEs && f.descriptionEs.value || '').trim() || text;
+        var image = '';
+        var file = f.image && f.image.files && f.image.files[0];
+        if (file) {
+          if (file.size > 2 * 1024 * 1024) {
+            productStatusMessage(DICT[lang].products.admin.imageTooLarge || 'Image trop volumineuse (max 2 Mo).');
+            return;
+          }
+          image = await new Promise(function (resolve, reject) {
+            var reader = new FileReader();
+            reader.onload = function () { resolve(String(reader.result || '')); };
+            reader.onerror = function () { reject(new Error('read-failed')); };
+            reader.readAsDataURL(file);
+          }).catch(function () { return ''; });
+        }
         var payload = {
           category: f.category.value,
           ref: (f.ref.value || '').trim() || t('common.toConfigure'),
           stock: f.stock.value,
+          image: image,
           name: {
             fr: nameFr,
             en: (f.nameEn.value || '').trim() || nameFr,

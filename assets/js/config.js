@@ -16,11 +16,11 @@
       url: 'https://bgs-site.onrender.com',
       // Titre suffixe dans les balises <title>
       titleSuffix: 'BGS — Solutions informatiques & transformation numérique',
-      email: '',            // Ex. : contact@bgs.example
+      email: 'bgsitsupport23@gmail.com',
       // Numéro officiel BGS fourni : 46071669 (indicatif +222 ajouté).
       phone: '+222 46 07 16 69',       // Format affiché sur le site
       phoneInternational: '22246071669', // Format utilisé pour les liens tel:
-      address: '',          // Ex. : Immeuble BGS, Nouakchott, Mauritanie
+      address: 'Cité plage villa n 138',
       city: '',
       country: 'Mauritanie'
     },
@@ -160,7 +160,7 @@
       { src: 'assets/img/tech-laptop-bureau.jpg', label: { fr: 'Ordinateurs portables', en: 'Laptops', ar: 'أجهزة الكمبيوتر المحمولة', es: 'Portátiles' } },
       { src: 'assets/img/tech-smartphone-main.jpg', label: { fr: 'Smartphones & mobilité', en: 'Smartphones & mobility', ar: 'الهواتف الذكية والتنقل', es: 'Smartphones y movilidad' } },
       { src: 'assets/img/tech-fibre-patch-panel.jpg', label: { fr: 'Raccordement fibre optique', en: 'Fiber optic cabling', ar: 'توصيل الألياف الضوئية', es: 'Cableado de fibra óptica' } },
-      { src: 'assets/img/tech-telephone-fixe.jpg', label: { fr: 'Téléphonie & communication', en: 'Telephony & communication', ar: 'الهاتف والاتصالات', es: 'Telefonía y comunicación' } },
+      { src: 'assets/img/tech-telephonie-ip.jpg', label: { fr: 'Téléphonie IP & communication', en: 'IP telephony & communication', ar: 'هاتف IP والاتصالات', es: 'Telefonía IP y comunicación' } },
       { src: 'assets/img/tech-fibre-cables-reseau.jpg', label: { fr: 'Câblage réseau & infrastructure', en: 'Network cabling & infrastructure', ar: 'كابلات الشبكة والبنية التحتية', es: 'Cableado de red e infraestructura' } },
       { src: 'assets/img/tech-laptop-moderne.jpg', label: { fr: 'Solutions informatiques', en: 'IT solutions', ar: 'حلول تقنية المعلومات', es: 'Soluciones informáticas' } },
       { src: 'assets/img/tech-smartphone-desk.jpg', label: { fr: 'Appareils connectés', en: 'Connected devices', ar: 'الأجهزة المتصلة', es: 'Dispositivos conectados' } }
