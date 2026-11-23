@@ -134,6 +134,7 @@
         ref: 'Référence'
       },
       home: {
+        projects: { eyebrow: "Nos réalisations", title: "Nos réalisations sur le terrain", subtitle: "Découvrez quelques interventions et déploiements réalisés par nos équipes." },
         badge: 'Intégrateur · Conseiller · Partenaire technologique',
         titleLead: 'Votre partenaire technologique',
         titleAccent: 'pour un avenir connecté',
@@ -710,6 +711,7 @@
         ref: 'Reference'
       },
       home: {
+        projects: { eyebrow: 'Our projects', title: 'Our work in the field', subtitle: 'Discover some interventions and deployments carried out by our teams.' },
         badge: 'Integrator · Advisor · Technology partner',
         titleLead: 'Your technology partner',
         titleAccent: 'for a connected future',
@@ -1285,6 +1287,7 @@
         ref: 'المرجع'
       },
       home: {
+        projects: { eyebrow: 'إنجازاتنا', title: 'إنجازاتنا الميدانية', subtitle: 'اكتشف بعض التدخلات وعمليات النشر التي نفذتها فرقنا.' },
         badge: 'مُكامل · مستشار · شريك تكنولوجي',
         titleLead: 'شريكك التكنولوجي',
         titleAccent: 'لمستقبل متصل',
@@ -1921,6 +1924,7 @@
         "ref": "Referencia"
       },
       "home": {
+        "projects": { "eyebrow": "Nuestros logros", "title": "Nuestros logros sobre el terreno", "subtitle": "Descubra algunas intervenciones y despliegues realizados por nuestros equipos." },
         "badge": "Integrador · Asesor · Socio tecnológico",
         "titleLead": "Tu socio tecnológico",
         "titleAccent": "por un futuro conectado",
