@@ -413,10 +413,30 @@ p { margin: 0; }
   inset-block-end: 0;
   padding: 42px 18px 16px;
   color: #FFF;
+  background: linear-gradient(180deg, transparent 0%, rgba(7,27,58,.08) 22%, rgba(7,27,58,.76) 100%);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.tech-card-brand {
+  display: inline-flex;
+  align-self: flex-start;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(22, 139, 255, .92);
+  color: #fff;
+  font-size: .72rem;
+  font-weight: 800;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  line-height: 1;
+  box-shadow: 0 6px 16px rgba(7,27,58,.22);
+}
+.tech-card-name {
   font-size: .95rem;
   font-weight: 700;
   letter-spacing: .01em;
-  background: linear-gradient(180deg, transparent 0%, rgba(7,27,58,.08) 22%, rgba(7,27,58,.76) 100%);
+  line-height: 1.35;
 }
 
 /* ---------------------- Marquee des marques PC / télécom --------------------- */

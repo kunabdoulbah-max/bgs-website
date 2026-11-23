@@ -232,10 +232,14 @@
     if (!items.length) return '';
     function card(item, hidden) {
       var label = esc(localized(item.label) || '');
+      var brand = esc(item.brand || '');
       var src = esc(item.src || '');
       return '<figure class="tech-card"' + (hidden ? ' aria-hidden="true"' : '') + '>' +
-        '<img src="' + src + '" alt="' + (hidden ? '' : label) + '"' + (hidden ? ' loading="lazy"' : '') + ' decoding="async">' +
-        '<figcaption class="tech-card-label">' + label + '</figcaption>' +
+        '<img src="' + src + '" alt="' + (hidden ? '' : (brand ? brand + ' - ' + label : label)) + '"' + (hidden ? ' loading="lazy"' : '') + ' decoding="async">' +
+        '<figcaption class="tech-card-label">' +
+          (brand ? '<span class="tech-card-brand">' + brand + '</span>' : '') +
+          '<span class="tech-card-name">' + label + '</span>' +
+        '</figcaption>' +
         '</figure>';
     }
     var group = function (hidden) {
