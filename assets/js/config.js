@@ -175,39 +175,46 @@
      */
     products: [
       {
-        id: 'cable-fibre', category: 'fibre', ref: 'À renseigner', stock: 'available',
+        id: 'cable-fibre', category: 'fibre', ref: 'BGS-FBR-001', stock: 'available',
+        image: 'assets/img/products/cable-fibre.jpg',
         name: { fr: 'Câble fibre optique', en: 'Fibre optic cable', ar: 'كابل الألياف البصرية', es: 'Cable de fibra óptica' },
-        description: { fr: 'Câble optique pour liaison FTTH / FTTB — type, longueur et caractéristiques à renseigner.', en: 'Optical cable for FTTH / FTTB links — type, length and specifications to be filled in.', ar: 'كابل بصري لوصلات FTTH / FTTB — يُحدد النوع والطول والمواصفات.', es: 'Cable óptico para enlaces FTTH / FTTB — tipo, longitud y características por especificar.' }
+        description: { fr: 'Câble fibre optique haute performance pour liaisons FTTH/FTTB et backbone, conçu pour une transmission stable et durable.', en: 'High-performance fiber optic cable for FTTH/FTTB and backbone links, designed for stable and durable transmission.', ar: 'كابل ألياف بصرية عالي الأداء لوصلات FTTH/FTTB والربط الأساسي، مصمم لنقل مستقر ودائم.', es: 'Cable de fibra óptica de alto rendimiento para enlaces FTTH/FTTB y backbone, diseñado para una transmisión estable y duradera.' }
       },
       {
-        id: 'odf-fibre', category: 'fibre', ref: 'À renseigner', stock: 'low',
+        id: 'odf-fibre', category: 'fibre', ref: 'BGS-FBR-002', stock: 'available',
+        image: 'assets/img/products/odf-fibre.jpg',
         name: { fr: 'Boîtier de raccordement optique (ODF)', en: 'Optical distribution frame (ODF)', ar: 'لوحة توزيع بصرية (ODF)', es: 'Panel de distribución óptica (ODF)' },
-        description: { fr: 'Boîtier de raccordement et de répartition des fibres — capacité à renseigner.', en: 'Fibre termination and distribution enclosure — capacity to be filled in.', ar: 'صندوق ربط وتوزيع الألياف — تُحدد السعة.', es: 'Armario de terminación y distribución de fibras — capacidad por especificar.' }
+        description: { fr: 'Panneau/boîtier ODF professionnel pour organiser, raccorder et protéger les fibres dans les baies et salles techniques.', en: 'Professional ODF panel/enclosure to organize, terminate, and protect fibers in racks and technical rooms.', ar: 'لوحة/صندوق ODF احترافي لتنظيم وتوصيل وحماية الألياف في الخزائن والغرف التقنية.', es: 'Panel/caja ODF profesional para organizar, terminar y proteger fibras en racks y salas técnicas.' }
       },
       {
-        id: 'module-sfp', category: 'fibre', ref: 'À renseigner', stock: 'available',
+        id: 'module-sfp', category: 'fibre', ref: 'BGS-FBR-003', stock: 'available',
+        image: 'assets/img/products/module-sfp.jpg',
         name: { fr: 'Module optique SFP', en: 'SFP optical module', ar: 'وحدة بصرية SFP', es: 'Módulo óptico SFP' },
-        description: { fr: 'Module de connexion optique pour équipements réseau — débit et portée à renseigner.', en: 'Optical transceiver for network equipment — speed and reach to be filled in.', ar: 'وحدة إرسال بصرية لمعدات الشبكة — تُحدد السرعة والمدى.', es: 'Transceptor óptico para equipos de red — velocidad y alcance por especificar.' }
+        description: { fr: 'Module SFP pour interconnexion fibre haute vitesse, compatible avec switches/routeurs professionnels pour liaisons fiables.', en: 'SFP module for high-speed fiber interconnection, compatible with professional switches/routers for reliable links.', ar: 'وحدة SFP للربط بالألياف عالية السرعة، متوافقة مع المبدلات/الموجهات الاحترافية لوصلات موثوقة.', es: 'Módulo SFP para interconexión de fibra de alta velocidad, compatible con switches/routers profesionales para enlaces fiables.' }
       },
       {
-        id: 'equipement-reseau', category: 'reseau', ref: 'À renseigner', stock: 'available',
-        name: { fr: 'Équipement réseau professionnel', en: 'Professional network equipment', ar: 'معدات شبكة احترافية', es: 'Equipo de red profesional' },
-        description: { fr: 'Switch, routeur ou point d’accès — modèle et caractéristiques à renseigner.', en: 'Switch, router or access point — model and specifications to be filled in.', ar: 'مبدّل أو موجّه أو نقطة وصول — يُحدد الطراز والمواصفات.', es: 'Switch, router o punto de acceso — modelo y características por especificar.' }
+        id: 'equipement-reseau', category: 'reseau', ref: 'BGS-NET-001', stock: 'available',
+        image: 'assets/img/products/equipement-reseau.jpg',
+        name: { fr: 'Switch réseau professionnel', en: 'Professional network switch', ar: 'مبدّل شبكة احترافي', es: 'Switch de red profesional' },
+        description: { fr: 'Switch managé de niveau professionnel pour réseaux d’entreprise, offrant performance, segmentation et haute disponibilité.', en: 'Professional-grade managed switch for enterprise networks, offering performance, segmentation, and high availability.', ar: 'مبدّل مُدار احترافي لشبكات المؤسسات، يوفر الأداء والتقسيم والتوافر العالي.', es: 'Switch gestionado de nivel profesional para redes empresariales, con rendimiento, segmentación y alta disponibilidad.' }
       },
       {
-        id: 'terminal-telecom', category: 'telecom', ref: 'À renseigner', stock: 'low',
-        name: { fr: 'Terminal télécom & voix', en: 'Telecom & voice terminal', ar: 'جهاز اتصالات وصوت', es: 'Terminal de telecomunicaciones y voz' },
-        description: { fr: 'Téléphone IP ou terminal sans fil — référence à renseigner.', en: 'IP phone or wireless terminal — reference to be filled in.', ar: 'هاتف IP أو جهاز لاسلكي — يُحدد المرجع.', es: 'Teléfono IP o terminal inalámbrico — referencia por especificar.' }
+        id: 'terminal-telecom', category: 'telecom', ref: 'BGS-TEL-001', stock: 'available',
+        image: 'assets/img/products/terminal-telecom.jpg',
+        name: { fr: 'Téléphone IP professionnel', en: 'Professional IP phone', ar: 'هاتف IP احترافي', es: 'Teléfono IP profesional' },
+        description: { fr: 'Téléphone IP HD pour téléphonie d’entreprise, intégration VoIP, qualité audio claire et gestion centralisée.', en: 'HD IP phone for business telephony, VoIP integration, clear audio quality, and centralized management.', ar: 'هاتف IP بدقة صوت عالية لاتصالات الأعمال، مع تكامل VoIP وجودة صوت واضحة وإدارة مركزية.', es: 'Teléfono IP HD para telefonía empresarial, integración VoIP, audio claro y gestión centralizada.' }
       },
       {
-        id: 'station-vsat', category: 'satellite', ref: 'À renseigner', stock: 'available',
-        name: { fr: 'Station satellite VSAT', en: 'VSAT satellite station', ar: 'محطة قمر صناعي VSAT', es: 'Estación satelital VSAT' },
-        description: { fr: 'Kit terminal satellite pour sites distants — composants à renseigner.', en: 'Satellite terminal kit for remote sites — components to be filled in.', ar: 'مجموعة طرفية فضائية للمواقع البعيدة — تُحدد المكونات.', es: 'Kit terminal satelital para sitios remotos — componentes por especificar.' }
+        id: 'station-vsat', category: 'satellite', ref: 'BGS-SAT-001', stock: 'available',
+        image: 'assets/img/products/station-vsat.jpg',
+        name: { fr: 'Antenne VSAT satellite', en: 'VSAT satellite antenna', ar: 'هوائي قمر صناعي VSAT', es: 'Antena satelital VSAT' },
+        description: { fr: 'Antenne VSAT professionnelle pour connectivité satellite fiable sur sites distants, avec liaison data/voix sécurisée.', en: 'Professional VSAT antenna for reliable satellite connectivity at remote sites, with secure data/voice links.', ar: 'هوائي VSAT احترافي لاتصال فضائي موثوق في المواقع البعيدة، مع روابط بيانات/صوت آمنة.', es: 'Antena VSAT profesional para conectividad satelital fiable en sitios remotos, con enlaces de datos/voz seguros.' }
       },
       {
-        id: 'poste-informatique', category: 'informatique', ref: 'À renseigner', stock: 'out',
-        name: { fr: 'Poste de travail informatique', en: 'IT workstation', ar: 'محطة عمل معلوماتية', es: 'Estación de trabajo informática' },
-        description: { fr: 'Ordinateur ou serveur — configuration et prix à renseigner.', en: 'Computer or server — configuration and price to be filled in.', ar: 'حاسوب أو خادم — تُحدد التهيئة والسعر.', es: 'Ordenador o servidor — configuración y precio por especificar.' }
+        id: 'poste-informatique', category: 'informatique', ref: 'BGS-IT-001', stock: 'available',
+        image: 'assets/img/products/poste-informatique.jpg',
+        name: { fr: 'Station de travail professionnelle', en: 'Professional workstation', ar: 'محطة عمل احترافية', es: 'Estación de trabajo profesional' },
+        description: { fr: 'Poste de travail haute performance pour équipes techniques et métiers, adapté aux usages intensifs et environnements pro.', en: 'High-performance workstation for technical and business teams, suited for intensive workloads and professional environments.', ar: 'محطة عمل عالية الأداء للفرق التقنية والمهنية، مناسبة للأعباء المكثفة وبيئات العمل الاحترافية.', es: 'Estación de trabajo de alto rendimiento para equipos técnicos y de negocio, adecuada para cargas intensivas y entornos profesionales.' }
       }
     ],
 

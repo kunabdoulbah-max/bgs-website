@@ -462,8 +462,9 @@
     return list.map(function (p, i) {
       var status = copy.stock[p.stock] || copy.stock.available;
       var cls = p.stock === 'out' ? 'out' : (p.stock === 'low' ? 'low' : 'available');
+      var img = p.image ? '<img src="' + esc(p.image) + '" alt="' + esc(localized(p.name)) + '" loading="lazy" decoding="async">' : '<span data-icon="' + (icons[p.category] || 'layers') + '"></span>';
       return '<article class="product-card reveal" data-product-category="' + esc(p.category) + '" style="transition-delay:' + ((i % 4) * 60) + 'ms">' +
-        '<div class="product-media"><span data-icon="' + (icons[p.category] || 'layers') + '"></span>' +
+        '<div class="product-media">' + img +
           '<span class="stock-badge ' + cls + '"><span class="dot"></span>' + esc(status) + '</span></div>' +
         '<div class="product-body">' +
           '<span class="product-category">' + esc(copy.categories[p.category] || p.category) + '</span>' +
