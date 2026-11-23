@@ -252,6 +252,11 @@ async function initStore() {
       received_at timestamptz NOT NULL,
       payload jsonb NOT NULL
     );
+    CREATE TABLE IF NOT EXISTS bgs_settings (
+      id smallint PRIMARY KEY DEFAULT 1 CHECK (id = 1),
+      payload jsonb NOT NULL DEFAULT '{}'::jsonb,
+      updated_at timestamptz NOT NULL DEFAULT now()
+    );
   `);
   console.log('[BGS] Base PostgreSQL connectée.');
 }
@@ -332,6 +337,97 @@ async function handleContact(req, res) {
     return json(res, 200, { ok: true, id: lead.id });
   } catch (err) {
     console.error('[BGS] Enregistrement:', err);
+    return json(res, 500, { ok: false, error: 'server-error' });
+  }
+}
+
+/* -------------------------------- Paramètres site -------------------------------- */
+
+const SETTINGS_FILE = path.join(DATA_DIR, 'settings.json');
+const DEFAULT_SETTINGS = { logo: '', site: {}, whatsapp: {}, social: {}, ui: {}, brands: null, brandLogos: null, hero: {}, footer: {}, home: {}, about: {}, services: {}, solutions: {}, projects: {}, contact: {}, i18n: {} };
+
+function normalizeImageData(value, prefix) {
+  const raw = String(value || '').trim();
+  if (!raw) return '';
+  if (prefix && raw.startsWith(prefix)) return raw;
+  const m = raw.match(/^data:image\/(png|jpeg|jpg|webp|gif|svg\+xml);base64,([A-Za-z0-9+/=]+)$/i);
+  if (!m) return '';
+  const mime = m[1].toLowerCase() === 'jpg' ? 'jpeg' : m[1].toLowerCase();
+  if (m[2].length > 2 * 1024 * 1024 * 1.37) return '';
+  return 'data:image/' + mime + ';base64,' + m[2];
+}
+
+function cleanObjStrings(obj, maxLen) {
+  const out = {};
+  if (!obj || typeof obj !== 'object') return out;
+  Object.keys(obj).forEach(function (k) {
+    const v = obj[k];
+    if (typeof v === 'string') out[k] = clean(v, maxLen || 500);
+    else if (typeof v === 'number' || typeof v === 'boolean') out[k] = v;
+  });
+  return out;
+}
+
+function normalizeSettings(raw) {
+  const src = raw && typeof raw === 'object' ? raw : {};
+  const site = cleanObjStrings(src.site, 300);
+  const whatsapp = cleanObjStrings(src.whatsapp, 300);
+  const social = cleanObjStrings(src.social, 300);
+  const ui = src.ui && typeof src.ui === 'object' ? { showSetupNotice: !!src.ui.showSetupNotice } : {};
+  const brands = Array.isArray(src.brands) ? src.brands.map((b) => clean(b, 60)).filter(Boolean).slice(0, 200) : null;
+  let brandLogos = null;
+  if (src.brandLogos && typeof src.brandLogos === 'object' && !Array.isArray(src.brandLogos)) {
+    brandLogos = {};
+    Object.keys(src.brandLogos).slice(0, 200).forEach(function (k) {
+      const v = clean(src.brandLogos[k], 500);
+      if (k && v) brandLogos[clean(k, 60)] = v;
+    });
+  }
+  const logo = normalizeImageData(src.logo, 'assets/img/');
+  const hero = src.hero && typeof src.hero === 'object' ? src.hero : {};
+  const i18n = src.i18n && typeof src.i18n === 'object' ? src.i18n : {};
+  return { logo, site, whatsapp, social, ui, brands, brandLogos, hero, i18n };
+}
+
+async function readSettings() {
+  if (pool) {
+    const { rows } = await pool.query('SELECT payload FROM bgs_settings WHERE id = 1');
+    if (rows.length && rows[0].payload) return normalizeSettings(rows[0].payload);
+    return {};
+  }
+  if (!fs.existsSync(SETTINGS_FILE)) return {};
+  try { return normalizeSettings(JSON.parse(fs.readFileSync(SETTINGS_FILE, 'utf8'))); } catch { return {}; }
+}
+
+async function writeSettings(settings) {
+  const payload = normalizeSettings(settings);
+  if (pool) {
+    await pool.query(
+      `INSERT INTO bgs_settings (id, payload, updated_at) VALUES (1, $1::jsonb, now())
+       ON CONFLICT (id) DO UPDATE SET payload = EXCLUDED.payload, updated_at = now()`,
+      [JSON.stringify(payload)]
+    );
+    return payload;
+  }
+  fs.mkdirSync(DATA_DIR, { recursive: true });
+  fs.writeFileSync(SETTINGS_FILE, JSON.stringify(payload, null, 2) + '\n', { mode: 0o600 });
+  return payload;
+}
+
+async function handleSettingsGet(req, res) {
+  const settings = await readSettings();
+  return json(res, 200, { ok: true, settings });
+}
+
+async function handleSettingsUpdate(req, res) {
+  if (!requireAdmin(req, res)) return;
+  let payload;
+  try { payload = await readJsonBody(req, MAX_PRODUCT_BODY); } catch (e) { return json(res, 400, { ok: false, error: e && e.message === 'Body too large' ? 'too-large' : 'invalid-body' }); }
+  try {
+    const settings = await writeSettings(payload);
+    return json(res, 200, { ok: true, settings });
+  } catch (err) {
+    console.error('[BGS] Paramètres:', err);
     return json(res, 500, { ok: false, error: 'server-error' });
   }
 }
@@ -967,6 +1063,12 @@ async function handleApi(req, res, url) {
     try { id = decodeURIComponent(productMatch[1]); } catch { return json(res, 400, { ok: false, error: 'invalid-id' }); }
     if (req.method === 'DELETE') return await handleProductDelete(req, res, id);
     if (req.method === 'PUT') { handleProductUpdate(req, res, id).catch(() => json(res, 500, { ok: false, error: 'server-error' })); return; }
+    return json(res, 405, { ok: false, error: 'method-not-allowed' });
+  }
+
+  if (p === '/api/settings') {
+    if (req.method === 'GET') { handleSettingsGet(req, res).catch(() => json(res, 500, { ok: false, error: 'server-error' })); return; }
+    if (req.method === 'PUT') { handleSettingsUpdate(req, res).catch(() => json(res, 500, { ok: false, error: 'server-error' })); return; }
     return json(res, 405, { ok: false, error: 'method-not-allowed' });
   }
 

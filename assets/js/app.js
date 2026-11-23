@@ -822,6 +822,7 @@
   var PRODUCT_STORE = 'bgs-products-v1';
   var productState = { list: null, api: false };
   var projectState = { list: null, api: false };
+  var settingsState = { data: {} };
   var adminState = { ready: false, authenticated: false, username: null, setupRequired: false };
 
   function api(url, options) {
@@ -832,11 +833,49 @@
       .catch(function () { return { ok: false, error: 'network' }; });
   }
 
+  function deepMerge(base, override) {
+    if (!override || typeof override !== 'object' || Array.isArray(override)) return override === undefined ? base : override;
+    var out = Array.isArray(base) ? base.slice() : Object.assign({}, base || {});
+    Object.keys(override).forEach(function (k) {
+      var bv = out[k], ov = override[k];
+      if (ov && typeof ov === 'object' && !Array.isArray(ov) && bv && typeof bv === 'object' && !Array.isArray(bv)) out[k] = deepMerge(bv, ov);
+      else if (ov !== undefined && ov !== null && ov !== '') out[k] = ov;
+    });
+    return out;
+  }
+
+  function applySiteSettings() {
+    var s = settingsState.data || {};
+    if (s.site) CFG.site = deepMerge(CFG.site || {}, s.site);
+    if (s.whatsapp) CFG.whatsapp = deepMerge(CFG.whatsapp || {}, s.whatsapp);
+    if (s.social) CFG.social = deepMerge(CFG.social || {}, s.social);
+    if (s.ui) CFG.ui = deepMerge(CFG.ui || {}, s.ui);
+    if (Array.isArray(s.brands) && s.brands.length) CFG.brands = s.brands;
+    if (s.brandLogos && typeof s.brandLogos === 'object') CFG.brandLogos = deepMerge(CFG.brandLogos || {}, s.brandLogos);
+    if (s.logo) {
+      document.querySelectorAll('img[src*="bgs-logo-officiel"]').forEach(function (img) { img.src = s.logo; });
+      document.querySelectorAll('link[rel="icon"]').forEach(function (l) { l.href = s.logo; });
+    }
+    // Apply simple i18n overrides: { fr: { key.path: value } }
+    if (s.i18n && typeof s.i18n === 'object') {
+      Object.keys(s.i18n).forEach(function (lc) {
+        if (!DICT[lc] || typeof s.i18n[lc] !== 'object') return;
+        Object.keys(s.i18n[lc]).forEach(function (path) {
+          var parts = path.split('.');
+          var obj = DICT[lc];
+          for (var i = 0; i < parts.length - 1; i++) { if (!obj[parts[i]]) obj[parts[i]] = {}; obj = obj[parts[i]]; }
+          if (s.i18n[lc][path] !== '') obj[parts[parts.length - 1]] = s.i18n[lc][path];
+        });
+      });
+    }
+  }
+
   async function loadSiteState() {
-    var results = await Promise.all([api('/api/products'), api('/api/projects'), api('/api/admin/status')]);
-    var products = results[0], projects = results[1], status = results[2];
+    var results = await Promise.all([api('/api/products'), api('/api/projects'), api('/api/settings'), api('/api/admin/status')]);
+    var products = results[0], projects = results[1], settings = results[2], status = results[3];
     if (products.ok && Array.isArray(products.products)) { productState.list = products.products; productState.api = true; }
     if (projects.ok && Array.isArray(projects.projects)) { projectState.list = projects.projects; projectState.api = true; }
+    if (settings.ok && settings.settings) { settingsState.data = settings.settings; applySiteSettings(); }
     adminState.ready = true;
     if (status.ok) {
       adminState.authenticated = !!status.authenticated;

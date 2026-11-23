@@ -92,6 +92,61 @@
     form.dataset.mode = setupRequired ? 'setup' : 'login';
   }
 
+  function readFileAsDataUrl(file) {
+    return new Promise(function (resolve) {
+      var r = new FileReader();
+      r.onload = function () { resolve(String(r.result || '')); };
+      r.onerror = function () { resolve(''); };
+      r.readAsDataURL(file);
+    });
+  }
+
+  async function initSettings() {
+    var card = document.getElementById('siteSettingsCard');
+    var form = document.getElementById('siteSettingsForm');
+    if (!card || !form) return;
+    card.hidden = false;
+    var statusEl = document.getElementById('siteSettingsStatus');
+    var res = await api('/api/settings');
+    var s = (res && res.settings) || {};
+    var site = s.site || {}; var wa = s.whatsapp || {}; var social = s.social || {};
+    form.elements.siteEmail.value = site.email || '';
+    form.elements.sitePhone.value = site.phone || '';
+    form.elements.sitePhoneInternational.value = site.phoneInternational || '';
+    form.elements.whatsappNumber.value = wa.number || '';
+    form.elements.siteAddress.value = site.address || '';
+    form.elements.siteCity.value = site.city || '';
+    form.elements.siteCountry.value = site.country || '';
+    form.elements.siteUrl.value = site.url || '';
+    form.elements.socialLinkedin.value = social.linkedin || '';
+    form.elements.socialFacebook.value = social.facebook || '';
+    form.elements.socialInstagram.value = social.instagram || '';
+    if (form.dataset.bound) return;
+    form.dataset.bound = '1';
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      if (statusEl) statusEl.textContent = 'Enregistrement…';
+      var logo = '';
+      if (form.elements.logo.files && form.elements.logo.files[0]) {
+        var file = form.elements.logo.files[0];
+        if (file.size > 2 * 1024 * 1024) { if (statusEl) statusEl.textContent = 'Logo trop volumineux (max 2 Mo).'; return; }
+        logo = await readFileAsDataUrl(file);
+      }
+      var payload = {
+        logo: logo || (s.logo || ''),
+        site: { email: form.elements.siteEmail.value.trim(), phone: form.elements.sitePhone.value.trim(), phoneInternational: form.elements.sitePhoneInternational.value.trim(), address: form.elements.siteAddress.value.trim(), city: form.elements.siteCity.value.trim(), country: form.elements.siteCountry.value.trim(), url: form.elements.siteUrl.value.trim() },
+        whatsapp: { number: form.elements.whatsappNumber.value.trim() },
+        social: { linkedin: form.elements.socialLinkedin.value.trim(), facebook: form.elements.socialFacebook.value.trim(), instagram: form.elements.socialInstagram.value.trim() }
+      };
+      var submit = document.getElementById('siteSettingsSubmit');
+      if (submit) submit.disabled = true;
+      var result = await api('/api/settings', { method: 'PUT', body: JSON.stringify(payload) });
+      if (submit) submit.disabled = false;
+      if (result.ok) { if (statusEl) statusEl.textContent = 'Paramètres enregistrés. Rechargez le site pour voir le nouveau logo partout.'; if (result.settings) s = result.settings; }
+      else { if (statusEl) statusEl.textContent = errorMessage(result.error); }
+    });
+  }
+
   async function init() {
     var form = document.getElementById('adminForm');
     var status = await api('/api/admin/status');
@@ -102,6 +157,7 @@
     }
     if (status.authenticated) {
       showConnected(status.username);
+      initSettings();
     } else {
       showForm(!!status.setupRequired);
     }
@@ -133,8 +189,7 @@
         setError(errorMessage(result.error));
         return;
       }
-      var target = 'produits.html?lang=' + encodeURIComponent(lang);
-      window.location.assign(target);
+      window.location.reload();
     });
 
     var logout = document.getElementById('adminLogout');

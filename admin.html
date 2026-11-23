@@ -21,14 +21,14 @@
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="assets/css/styles.css?v=28">
+  <link rel="stylesheet" href="assets/css/styles.css?v=29">
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"WebPage","name":"Administration","url":"https://bgs-site.onrender.com/admin.html","isPartOf":{"@type":"WebSite","name":"BGS","url":"https://bgs-site.onrender.com"},"inLanguage":["fr","en","ar","es"]}
   </script>
-  <script src="assets/js/config.js?v=28" defer></script>
-  <script src="assets/js/i18n.js?v=28" defer></script>
-  <script src="assets/js/app.js?v=28" defer></script>
-  <script src="assets/js/admin.js?v=28" defer></script>
+  <script src="assets/js/config.js?v=29" defer></script>
+  <script src="assets/js/i18n.js?v=29" defer></script>
+  <script src="assets/js/app.js?v=29" defer></script>
+  <script src="assets/js/admin.js?v=29" defer></script>
 </head>
 <body data-page="admin">
   <a class="skip-link" href="#main" data-i18n="nav.skip">Aller au contenu principal</a>
@@ -147,9 +147,36 @@
             <p class="admin-welcome" id="adminWho">Bienvenue, BGS</p>
             <div class="admin-connected-actions">
               <a class="btn btn-primary" href="produits.html" data-i18n="admin.openCatalog">Gérer les produits</a>
+              <a class="btn btn-outline-dark" href="realisations.html">Gérer les réalisations</a>
               <button type="button" class="btn btn-outline-dark" id="adminLogout" data-i18n="admin.logout">Se déconnecter</button>
             </div>
           </div>
+        </div>
+
+        <div class="admin-card reveal" id="siteSettingsCard" hidden style="margin-top:24px">
+          <div class="admin-card-head">
+            <span class="admin-lock" data-icon="edit"></span>
+            <div>
+              <h2>Paramètres du site</h2>
+              <p>Modifiez les informations principales du site. Les changements sont enregistrés sur le serveur et visibles par tous les visiteurs.</p>
+            </div>
+          </div>
+          <form id="siteSettingsForm" class="product-form admin-form" novalidate>
+            <label><span>Logo du site</span><input type="file" name="logo" accept="image/png,image/jpeg,image/webp,image/svg+xml,image/gif"><small>PNG/SVG/JPG/WebP. Max 2 Mo.</small></label>
+            <label><span>Email</span><input type="email" name="siteEmail" maxlength="120"></label>
+            <label><span>Téléphone affiché</span><input type="text" name="sitePhone" maxlength="40"></label>
+            <label><span>Téléphone international (chiffres)</span><input type="text" name="sitePhoneInternational" maxlength="20"></label>
+            <label><span>WhatsApp (chiffres, sans +)</span><input type="text" name="whatsappNumber" maxlength="20"></label>
+            <label><span>Adresse</span><input type="text" name="siteAddress" maxlength="200"></label>
+            <label><span>Ville</span><input type="text" name="siteCity" maxlength="80"></label>
+            <label><span>Pays</span><input type="text" name="siteCountry" maxlength="80"></label>
+            <label><span>URL du site</span><input type="text" name="siteUrl" maxlength="200"></label>
+            <label><span>LinkedIn</span><input type="text" name="socialLinkedin" maxlength="300"></label>
+            <label><span>Facebook</span><input type="text" name="socialFacebook" maxlength="300"></label>
+            <label><span>Instagram</span><input type="text" name="socialInstagram" maxlength="300"></label>
+            <div class="product-form-actions"><button type="submit" class="btn btn-primary" id="siteSettingsSubmit">Enregistrer les paramètres</button></div>
+            <p class="product-status" id="siteSettingsStatus" role="status" aria-live="polite"></p>
+          </form>
         </div>
 
         <p class="admin-note" data-i18n="admin.protected">Espace réservé à l’administrateur du site.</p>
