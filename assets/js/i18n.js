@@ -288,10 +288,10 @@
             benefits: ['Collaboration facilitée', 'Coûts et accès mieux maîtrisés', 'Continuité des services renforcée']
           },
           {
-            id: 'developpement', icon: 'code', name: 'Développement informatique',
-            short: 'Des outils numériques adaptés à vos processus métiers.',
-            description: 'Conception et développement de solutions web et d’applications de gestion, avec intégration aux systèmes existants et automatisation des tâches.',
-            features: ['Développement CRM', 'Création de sites web', 'Applications web et mobiles', 'Applications de gestion', 'Automatisation des processus', 'Intégration de solutions métiers'],
+            id: 'developpement', icon: 'code', name: 'Développement web, CRM & applications',
+            short: 'Sites web, CRM et applications métiers adaptés à vos processus.',
+            description: 'Conception et développement de sites web professionnels, de sites/solutions CRM et d’applications web et mobiles, avec intégration aux systèmes existants et automatisation des tâches.',
+            features: ['Création de sites web', 'Création de site CRM', 'Développement CRM', 'Applications web et mobiles', 'Applications de gestion', 'Publicité digitale', 'Automatisation et intégration'],
             detailTitle: 'Du besoin métier à l’outil opérationnel',
             deliverables: ['Cahier des charges et maquettes fonctionnelles', 'Application développée et testée', 'Documentation technique et formation des utilisateurs'],
             benefits: ['Processus fluidifiés', 'Données centralisées', 'Outils évolutifs et maintenables']
@@ -873,10 +873,10 @@
             benefits: ['Easier collaboration', 'Better cost and access control', 'Stronger service continuity']
           },
           {
-            id: 'developpement', icon: 'code', name: 'Software development',
-            short: 'Digital tools built around your business processes.',
-            description: 'Design and development of web solutions and management applications, integrated with existing systems and automating repetitive tasks.',
-            features: ['CRM development', 'Website creation', 'Web and mobile applications', 'Management applications', 'Process automation', 'Business solution integration'],
+            id: 'developpement', icon: 'code', name: 'Web, CRM & app development',
+            short: 'Websites, CRM systems and business apps tailored to your processes.',
+            description: 'Design and development of professional websites, CRM sites/solutions, and web and mobile applications, integrated with existing systems and automating repetitive tasks.',
+            features: ['Website creation', 'CRM website creation', 'CRM development', 'Web and mobile applications', 'Business applications', 'Digital advertising', 'Automation and integration'],
             detailTitle: 'From business need to working tool',
             deliverables: ['Specification and functional mock-ups', 'Developed and tested application', 'Technical documentation and user training'],
             benefits: ['Smoother processes', 'Centralised data', 'Scalable and maintainable tools']
@@ -1457,10 +1457,10 @@
             benefits: ['تعاون أسهل', 'تحكم أفضل بالتكاليف والوصول', 'استمرارية خدمات أقوى']
           },
           {
-            id: 'developpement', icon: 'code', name: 'التطوير التقني',
-            short: 'أدوات رقمية تناسب عملياتك التجارية.',
-            description: 'تصميم وتطوير حلول ويب وتطبيقات إدارية، مع الدمج مع الأنظمة القائمة وأتمتة المهام.',
-            features: ['تطوير أنظمة CRM', 'إنشاء مواقع الويب', 'تطبيقات الويب والهاتف', 'تطبيقات الإدارة', 'أتمتة العمليات', 'دمج حلول الأعمال'],
+            id: 'developpement', icon: 'code', name: 'تطوير الويب وCRM والتطبيقات',
+            short: 'مواقع ويب وأنظمة CRM وتطبيقات أعمال مصممة حسب عملياتك.',
+            description: 'تصميم وتطوير مواقع ويب احترافية، ومواقع/حلول CRM، وتطبيقات ويب وهاتف، مع التكامل مع الأنظمة الحالية وأتمتة المهام.',
+            features: ['إنشاء مواقع الويب', 'إنشاء موقع CRM', 'تطوير أنظمة CRM', 'تطبيقات الويب والهاتف', 'تطبيقات الإدارة', 'الأتمتة والتكامل'],
             detailTitle: 'من الحاجة التجارية إلى أداة تشغيلية',
             deliverables: ['مواصفات ونماذج وظيفية', 'تطبيق مطوّر ومُختبر', 'وثائق تقنية وتدريب المستخدمين'],
             benefits: ['عمليات أكثر سلاسة', 'بيانات مركزية', 'أدوات قابلة للتوسع والصيانة']
@@ -2304,14 +2304,15 @@
             "icon": "código",
             "name": "desarrollo de TI",
             "short": "Herramientas digitales adaptadas a tus procesos de negocio.",
-            "description": "Diseño y desarrollo de soluciones web y aplicaciones de gestión, con integración a sistemas existentes y automatización de tareas.",
+            "description": "Diseño y desarrollo de sitios web profesionales, sitios/soluciones CRM y aplicaciones web y móviles, con integración a sistemas existentes y automatización de tareas.",
             "features": [
-              "Desarrollo de CRM",
               "Creación de sitios web",
+              "Creación de sitio CRM",
+              "Desarrollo de CRM",
               "Aplicaciones web y móviles",
               "Aplicaciones de gestión",
-              "Automatización de procesos",
-              "Integración de soluciones empresariales."
+              "Publicidad digital",
+              "Automatización e integración"
             ],
             "detailTitle": "De necesidad empresarial a herramienta operativa",
             "deliverables": [
